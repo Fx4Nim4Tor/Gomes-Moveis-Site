@@ -1,0 +1,192 @@
+.container-img{
+    width: 100%;
+    height: 600px;
+
+    background-image: url("/static/images/index_image.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    position: relative; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*background: rgba(0, 0, 0, 0.5);*/
+}
+.container-img::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: rgba(0,0,0,0.5);
+}
+.container-hero{
+    width: 90%;
+    height: 338px;
+
+    margin: auto;
+    padding: 16px;
+    
+    line-height: 1.6;
+    z-index: 1;
+}
+
+
+.container-hero h1{
+    color: white;
+    font-size: 60px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+.container-hero p{
+    color: white;
+    font-size: 20px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+.container-btn{
+    width: 100%;
+    height: 48px;
+    gap: 20px;
+    display: flex;
+}
+.container-btn button{
+    border: none;
+    transition: transform 0.3s ease;
+}
+.container-btn button:hover{
+    border: none;
+    transform: scale(1.05);
+}
+.comprar-cadeiras-btn{
+    width: 215px;
+    height: 100%;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+    font-size: 17px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+
+    background-color: #D32F2F;
+}
+.ver-mesas-btn{
+    width: 150px;
+    height: 100%;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #D32F2F;
+    font-size: 17px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+
+    background-color: white;
+}
+
+.container-catergoria{
+    width: 100%;
+    height: 550px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.container-hero-categoria{
+    width: 90%;
+    height: 450px;
+
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-direction: column;
+    padding: 16px
+}
+.container-hero-categoria h2{
+    display: flex;
+    justify-content: center;
+    color: #4A4A4A;
+    font-size: 40px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+}
+
+.categorias{
+    width: 100%;
+    height: 75%;
+    display: flex;
+    padding: 10px;
+    gap: 20px;
+}
+
+.categorias button{
+    width: 20%;
+    height: 100%;
+    border-radius: 20px;
+    border: none;
+
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    padding: 30px;
+
+    color: white;
+    font-size: 20px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+
+
+    position: relative;
+    overflow: hidden;
+}
+
+.categorias button::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+}
+
+.categorias button p{
+    z-index: 1;
+}
+
+.categorias button:hover{
+    transform: scale(1.05);
+}
+
+
+.executivo{
+    background-image: url("/static/images/executiva.jpg");
+}
+.gamer{
+    background-image: url("/static/images/gamer.jpg");
+}
+.ergonomica{
+    background-image: url("/static/images/ergonomico.jpg");
+}
+.escritorio{
+    background-image: url("/static/images/escritorio.jpg");
+}
+.home-office{
+    background-image: url("/static/images/home_office.jpg");
+}
