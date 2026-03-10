@@ -46,14 +46,16 @@
             <p>Selecionamos os melhores móveis para transformar seu ambiente de trabalho</p>
         </div>
         <div class="container-produto">
+            {% for produto in produtos_destaque %}
             <div class="produto">
-                <div class="img-produto">
-
-                </div>
+                
+                <img class="img-produto" src="{{ produto.imagem.url }}">
+                
                 <div class="paragrafo-produto">
-                    <p>teste produto</p>
+                    <p>{{ produto.nome }}</p>
                 </div>
             </div>
+            {% endfor %}
         </div>
     </div>
 </div>
