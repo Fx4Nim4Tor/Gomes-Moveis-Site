@@ -37,6 +37,7 @@
         </div>
     </div>
 </div>
+
 <div class="container-destaque">
     <div class="container-hero-destaque">
         <div class="produto-destaque">
@@ -47,19 +48,119 @@
         </div>
         <div class="container-produto">
             {% for produto in produtos_destaque %}
-            <div class="produto">
-                
-                <img class="img-produto" src="{{ produto.imagem.url }}">
-                
+            <button class="produto">
+                <div class="img-container">
+                    <img class="img-produto" src="{{ produto.imagem.url }}">
+                </div>
                 <div class="paragrafo-produto">
                     <p>{{ produto.nome }}</p>
                 </div>
-            </div>
+            </button>
             {% endfor %}
         </div>
     </div>
 </div>
 
+<div class="container-visao">
+    <div class="container-descricao-visao">
+        <div class="descricao-visao">
+            <div class="sobre">
+                <h4>Sobre a Gomes Móveis</h4>
+            </div>
+            <div class="visao">
+                <p> 
+                    Há mais de 50 anos no mercado, a <strong>Gomes Móveis</strong> é referência em móveis ergonômicos e de alta qualidade para escritórios, home office e espaços corporativos.
+                </p>
+                <br>
+                <p>
+                    Nossa missão é proporcionar <strong>conforto, produtividade</strong> e <strong>bem-estar</strong> através de produtos cuidadosamente selecionados e testados.
+                </p>
+                <br>
+                <p>
+                    Cada peça é escolhida pensando na <strong>ergonomia</strong> e na durabilidade, garantindo que seu investimento seja de longo prazo e contribua para a saúde e eficiência no trabalho.
+                </p>
+                <br>
+                <br>
+            </div>
+        </div>
+        <div class="infos-visao">
+            <div class="anos">
+                <h1>
+                   50+ 
+                </h1>
+                <p>
+                    Anos de Experiência
+                </p>
+            </div>
+            <div class="clientes">
+                <h1>
+                   10k+ 
+                </h1>
+                <p>
+                    Clientes Satisfeitos
+                </p>
+            </div>
+            <div class="avaliacao">
+                <h1>
+                   98%
+                </h1>
+                <p>
+                    Avaliações Positivas
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-img-visao">
+        <div class="img-visao">
+            <img src="/static/images/img-visao.jpg">
+        </div>
+    </div>
+</div>
+
+
+<div class="footer">
+    <br><br><br><br><br>
+    <div class="container-footer">
+        <div class="Atendimento-footer">
+            <h1>Atendimento</h1>
+            <ul class="mov">
+                <li><a href="">Contato</a></li>
+                <li><a href="">Garantia</a></li>
+            </ul>
+        </div>
+        <div class="Categorias-footer">
+            <h1>Categorias</h1>
+            <ul class="mov">
+                <li><a href="">Cadeiras</a></li>
+                <li><a href="">Mesas</a></li>
+                <li><a href="">Ofertas</a></li>
+                <br>
+            </ul>
+        </div>
+        <div class="Redes-Sociais-footer">
+            <h1>Redes Sociais</h1>
+            <p>Siga-nos nas redes sociais</p>
+            <div class="icon-footer">
+                <a href="https://www.instagram.com/gomesmoveis.escritorio/" target="_blank">
+                    <i class="fa-brands fa-instagram instagram"></i>
+                </a>
+                <a href="https://www.facebook.com/gomesmoveis.escritorio?locale=pt_BR" target="_blank">
+                    <i class="fa-brands fa-facebook facebook"></i>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+    <div class="container-direitos">
+        <h1>
+            Gomes Móveis
+        </h1>
+        <p>
+            © 2026 Gomes Móveis. Todos os direitos reservados.
+        </p>
+    </div>
+</div>
 
 
 
