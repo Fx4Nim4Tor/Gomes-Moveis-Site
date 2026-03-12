@@ -41,8 +41,9 @@ class ProdutoImagem(models.Model):
     imagem = models.ImageField(upload_to="produtos/")
 
     def clean(self):
-        if self.produto.imagens.count() >= 4:
-            raise ValidationError("Este produto já possui 4 imagens.")
+        if self.produto and self.produto.pk:
+            if self.produto.imagens.count() >= 4:
+                raise ValidationError("Este produto já possui 4 imagens.")
 
     def save(self, *args, **kwargs):
         self.clean()

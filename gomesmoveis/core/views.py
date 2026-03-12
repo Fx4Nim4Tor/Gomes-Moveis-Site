@@ -8,7 +8,6 @@ def inicio(request):
     return render(request, "index.html", {
         "produtos_destaque": produtos_destaque
     })
-    # return render(request,"index.html")
 
 
 def produto(request, slug):
