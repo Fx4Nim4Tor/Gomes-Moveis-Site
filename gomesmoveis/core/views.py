@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Produto
 
 # Create your views here.
@@ -10,5 +10,16 @@ def inicio(request):
     })
     # return render(request,"index.html")
 
+
+def produto(request, slug):
+    produto = get_object_or_404(Produto, slug=slug)
+
+    return render(request, "produto.html", {
+        "produto": produto
+    })
+
+
+
+# nao sendo usado no momento
 def adm(request):
     return render(request, "admin/admin.html")

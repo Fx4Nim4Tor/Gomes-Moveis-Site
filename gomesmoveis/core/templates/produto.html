@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/produto.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container-produto">
+    <div class="container-produto-principal">
+        <div class="img-produto">
+            <div class="img-1-produto">
+                <img src="{{ produto.imagens.first.imagem.url }}">
+            </div>
+            <div class="mini-img-produto">
+                <div class="img-2-produto">
+                    <img src="{{ produto.imagens.all.1.imagem.url }}">
+                </div>
+                <div class="img-3-produto">
+                    <img src="{{ produto.imagens.all.2.imagem.url }}">
+                </div>
+                <div class="img-4-produto">
+                    <img src="{{ produto.imagens.all.3.imagem.url }}">
+                </div>
+            </div>
+        </div>
+
+        <div class="container-descricao-produto">
+            <div class="nome-produto">
+
+            </div>
+            <div class="descricao-produto">
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- <h1>{{ produto.nome }}</h1>
+
+
+
+<p>{{ produto.descricao }}</p> -->
+
+{% endblock %}
