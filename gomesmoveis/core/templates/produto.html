@@ -53,10 +53,26 @@
             </div>
         </div>
     </div>
-    <div class="container-produtos-relacionados">
+    
+    <div class="relacionado">
+        <h1>Produtos Relacionados</h1>
+    </div>
 
+    <div class="container-produtos-relacionados">
+        {% for p in produtos_relacionados %}
+        <a href="{% url 'produto' p.slug %}">
+            <div class="img-container">
+                <img src="{{ p.imagens.first.imagem.url }}">
+            </div>
+            <div class="paragrafo-produto">
+                <p>{{ p.nome }}</p>
+            </div>
+        </a>
+        {% endfor %}
     </div>
 </div>
+
+
 
 
 
