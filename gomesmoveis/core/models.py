@@ -42,8 +42,8 @@ class ProdutoImagem(models.Model):
 
     def clean(self):
         if self.produto and self.produto.pk:
-            if self.produto.imagens.count() >= 4:
-                raise ValidationError("Este produto já possui 4 imagens.")
+            if self.produto.imagens.count() >= 3:
+                raise ValidationError("Este produto já possui 3 imagens.")
 
     def save(self, *args, **kwargs):
         self.clean()

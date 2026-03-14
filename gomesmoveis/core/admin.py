@@ -5,8 +5,8 @@ admin.site.register(Categoria)
 
 class ProdutoImagemInline(admin.TabularInline):
     model = ProdutoImagem
-    extra = 4
-    max_num = 4
+    extra = 3
+    max_num = 3
 
 @admin.register(Produto)
 class ProdutoAdmin(admin.ModelAdmin):

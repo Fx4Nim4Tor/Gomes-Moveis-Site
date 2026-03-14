@@ -17,7 +17,7 @@ def produto(request, slug):
         Produto.objects
         .filter(categoria=produto.categoria)   # mesma categoria
         .exclude(id=produto.id)                # remove o produto atual
-        .order_by("?")[:5]                     # aleatório e limitado a 5
+        .order_by("?")[:4]                     # aleatório e limitado a 5
     )
 
     return render(request, "produto.html", {

@@ -5,6 +5,11 @@
 <link rel="stylesheet" href="{% static 'css/produto.css' %}">
 {% endblock %}
 
+{% block js %}
+<script src="{% static 'js/produto.js' %}"></script>
+{% endblock %}
+
+
 {% block content %}
 <div class="move">
     <a href="/">voltar</a>
@@ -18,18 +23,12 @@
     <div class="container-produto-principal">
         <div class="img-produto">
             <div class="img-1-produto">
-                <img src="{{ produto.imagens.first.imagem.url }}">
+                <img id="img-principal" src="{{ produto.imagens.first.imagem.url }}">
             </div>
             <div class="mini-img-produto">
-                <button class="img-2-produto">
-                    <img src="{{ produto.imagens.all.1.imagem.url }}">
-                </button>
-                <button class="img-3-produto">
-                    <img src="{{ produto.imagens.all.2.imagem.url }}">
-                </button>
-                <button class="img-4-produto">
-                    <img src="{{ produto.imagens.all.3.imagem.url }}">
-                </button>
+                <img class="miniatura" src="{{ produto.imagens.all.first.imagem.url }}">
+                <img class="miniatura" src="{{ produto.imagens.all.1.imagem.url }}">
+                <img class="miniatura" src="{{ produto.imagens.all.2.imagem.url }}">
             </div>
         </div>
 
@@ -45,19 +44,17 @@
                 <div class="compartilhar">
                     Compartilhar
                 </div>
-                <button class="div-whats">
-                    <a class="whats" href="">
+                <button class="btn-whats">
+                    <p class="whats" href="">
                         Comprar!!
-                    </a>
+                    </p>
                 </button>
             </div>
         </div>
     </div>
-    
     <div class="relacionado">
         <h1>Produtos Relacionados</h1>
     </div>
-
     <div class="container-produtos-relacionados">
         {% for p in produtos_relacionados %}
         <a href="{% url 'produto' p.slug %}">
@@ -72,6 +69,23 @@
     </div>
 </div>
 
+<!-- alerta quando clica no whats que no css ta como COMPRAR! kk-->
+<div id="alerta" class="alerta">
+    <div class="alerta-conteudo">
+        <span class="fechar" onclick="">x</span>
+
+        <h2>Onde você mora?</h2>
+        <p class="descricao-alerta">selecione qual cidade você mora.</p>
+        <div class="container-btn-alerta">
+            <button class="pinhalzinho">
+                <p>Pinhalzinho</p>
+            </button>
+            <button class="smo">
+                <p>São Miguel do Oeste</p>
+            </button>
+        </div>
+    </div>
+</div>
 
 
 
