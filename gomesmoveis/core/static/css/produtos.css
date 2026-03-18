@@ -1,0 +1,81 @@
+.container{
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+    background-color: #823d3d;
+}
+/*filtros*/
+.filtro{
+    padding: 20px;
+
+    background-color: aquamarine;
+}
+
+
+
+/* produtos */
+.container-itens{
+    width: 100%;
+    padding: 40px;
+
+    background-color: aquamarine;
+}
+
+.container-produtos{
+    width: 100%;
+    height: 100%;
+    padding: 16px;
+    gap: 30px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(100px, 370px));
+    justify-content: center;
+}
+.container-produtos a{
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.5);
+    transition: transform 0.5s ease;
+    background-color: white;
+
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-decoration:none;
+    transition: transform 0.5s ease;
+}
+.container-produtos a:hover{
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transform: translateY(-10px);
+}
+
+
+.img-container{
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+}
+.img-container img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    cursor: pointer;
+    transition: transform 0.5s ease;
+}
+.img-container img:hover{
+    transform: scale(1.05);
+}
+
+.paragrafo-produto{
+    width: 100%;
+    height: 30%;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+}
+.paragrafo-produto p{
+    color: #4A4A4A;
+    font-size: 17px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+}

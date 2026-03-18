@@ -1,5 +1,8 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Produto
+from django.core.paginator import Paginator
+from .models import Produto, Categoria
+from django.template.loader import render_to_string
+from django.http import JsonResponse
 
 # Create your views here.
 def inicio(request):
@@ -25,7 +28,30 @@ def produto(request, slug):
         "produtos_relacionados": produtos_relacionados
     })
 
+from django.core.paginator import Paginator
 
+
+#para colocar os produtos na pagina onde mostra todos os produtos
+def produtos(request):
+    lista_produtos = Produto.objects.all()
+    categorias = Categoria.objects.all()
+
+    # Filtra por categoria se tiver
+    categorias_selecionadas = request.GET.getlist('categoria')
+    if categorias_selecionadas:
+        lista_produtos = lista_produtos.filter(
+            categoria__slug__in=categorias_selecionadas
+        )
+
+    paginator = Paginator(lista_produtos, 12)  #usa a lista filtrada
+    page_number = request.GET.get('page')
+    itens = paginator.get_page(page_number)
+
+
+    return render(request, "produtos.html", {
+        "produtos": itens,
+        "categorias": categorias
+    })
 
 # nao sendo usado no momento
 def adm(request):

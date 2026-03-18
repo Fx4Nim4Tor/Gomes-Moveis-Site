@@ -16,16 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from core.views import adm, produto ,inicio
+from core.views import adm, produto ,inicio, produtos
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
 
-
+    path("produtos/",produtos, name="produtos"),
     path("produtos/<slug:slug>/",produto, name="produto"),
     path("admin/",admin.site.urls), #
-    path("", inicio)
+    path("", inicio,name="inicio")
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

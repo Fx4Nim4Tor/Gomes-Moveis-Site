@@ -12,9 +12,9 @@
 
 {% block content %}
 <div class="move">
-    <a href="/">voltar</a>
+    <a href="{% url 'inicio' %}">voltar</a>
     <p>/</p>
-    <a href="">produtos</a>
+    <a href="{% url 'produtos' %}">produtos</a>
     <p>/</p>
     <p>{{ produto.nome }}</p>
 </div>

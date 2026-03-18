@@ -1,7 +1,10 @@
 from django.contrib import admin
 from .models import Produto, Categoria, ProdutoImagem
 
-admin.site.register(Categoria)
+class CategoriaAdmin(admin.ModelAdmin):
+    prepopulated_fields = {"slug": ("nome",)}
+
+admin.site.register(Categoria, CategoriaAdmin)
 
 class ProdutoImagemInline(admin.TabularInline):
     model = ProdutoImagem
