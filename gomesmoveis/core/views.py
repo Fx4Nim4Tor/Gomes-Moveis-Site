@@ -35,23 +35,35 @@ from django.core.paginator import Paginator
 def produtos(request):
     lista_produtos = Produto.objects.all()
     categorias = Categoria.objects.all()
+    tipo_produtos = Produto.TIPOS
 
-    # Filtra por categoria se tiver
+    # filtra por categoria se tiver
     categorias_selecionadas = request.GET.getlist('categoria')
     if categorias_selecionadas:
         lista_produtos = lista_produtos.filter(
             categoria__slug__in=categorias_selecionadas
         )
 
-    paginator = Paginator(lista_produtos, 12)  #usa a lista filtrada
-    page_number = request.GET.get('page')
-    itens = paginator.get_page(page_number)
+     # filtro tipo
+    tipos_selecionados = request.GET.getlist('tipo')
+    if tipos_selecionados:
+        lista_produtos = lista_produtos.filter(
+            tipo__in=tipos_selecionados
+        )
+
+    # paginator = Paginator(lista_produtos, 12)  #usa a lista filtrada
+    # page_number = request.GET.get('page')
+    # itens = paginator.get_page(page_number)
 
 
     return render(request, "produtos.html", {
-        "produtos": itens,
-        "categorias": categorias
+        "produtos": lista_produtos,
+        "categorias": categorias,
+        "tipos": tipo_produtos,
     })
+
+
+
 
 # nao sendo usado no momento
 def adm(request):

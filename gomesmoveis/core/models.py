@@ -26,10 +26,18 @@ class Categoria(models.Model):
     
 
 class Produto(models.Model):
+    TIPOS = [
+        ("cadeira","Cadeira"),
+        ("mesa","Mesa"),
+        ("outros", "Outros")
+    ]
+
     nome = models.CharField(max_length=200)
     descricao = models.TextField()
     destaque = models.BooleanField(default=False)
     slug = models.SlugField(unique=True, blank=True)
+    tipo = models.CharField(max_length=20, choices=TIPOS, default="outros")
+
 
     categoria = models.ForeignKey(
         Categoria,

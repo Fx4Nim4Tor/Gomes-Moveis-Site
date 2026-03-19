@@ -4,7 +4,9 @@
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/index.css' %}">
 {% endblock %}
-
+{% block js %}
+<script src="{% static 'js/index.js' %}"></script>
+{% endblock %}
 
 {% block content %}
 <div class="container-img">
@@ -12,10 +14,10 @@
         <h1>Conforto e <br> produtividade para o <br> seu escritório</h1>
         <p>Móveis ergonômicos que transformam seu espaço de trabalho.</p>
         <div class="container-btn">
-            <button class="comprar-cadeiras-btn">
+            <button class="comprar-cadeiras-btn" data-url="{% url 'produtos' %}?tipo=cadeiras">
                 Comprar Cadeiras
             </button>
-            <button class="ver-mesas-btn">
+            <button class="ver-mesas-btn" data-url="{% url 'produtos' %}?tipo=mesa">
                 Ver Mesas
             </button>
         </div>
@@ -25,19 +27,19 @@
     <div class="container-hero-categoria">
         <h2>Categorias Principais</h2>
         <div class="categorias">
-            <button class="executivo">
+            <button class="executivo" data-url="{% url 'produtos' %}?categoria=executiva">
                 <p>Cadeiras Executivas</p>
             </button>
-            <button class="gamer">
+            <button class="gamer" data-url="{% url 'produtos' %}?categoria=gamer">
                 <p>Cadeiras Gamer</p>
             </button>
-            <button class="ergonomica">
+            <button class="ergonomica" data-url="{% url 'produtos' %}?categoria=ergonomica">
                 <p>Cadeiras Ergonômicas</p>
             </button>
-            <button class="escritorio">
+            <button class="escritorio" data-url="{% url 'produtos' %}?categoria=escritorio">
                 <p>Mesas de Escritório</p>
             </button>
-            <button class="home-office">
+            <button class="home-office" data-url="{% url 'produtos' %}?categoria=home-office">
                 <p>Mesas para Home Office</p>
             </button>
         </div>

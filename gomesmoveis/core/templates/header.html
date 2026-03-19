@@ -6,10 +6,9 @@
         <ul class="menu-header">
             <li><a href="{% url 'inicio' %}">Inicio</a></li>
             <li><a href="{% url 'produtos' %}">Produtos</a></li>
-            <li><a href="">Mesas</a></li>
-            <li><a href="">Cadeiras</a></li>
-            <li><a href="">Executivo</a></li>
-            <li><a href="">Contato</a></li>
+            <li><a href="{% url 'produtos' %}?tipo=mesa">Mesas</a></li>
+            <li><a href="{% url 'produtos' %}?tipo=cadeiras">Cadeiras</a></li>
+            <li><a href="{% url 'produtos' %}?categoria=executiva">Executivo</a></li>
         </ul>
         <li class="li-busca-header">
             <input type="text"
@@ -20,3 +19,20 @@
         </button>
     </div>
 </header>
+
+<div id="alerta" class="alerta">
+    <div class="alerta-conteudo">
+        <span class="fechar" onclick="">x</span>
+
+        <h2>Onde você mora?</h2>
+        <p class="descricao-alerta">selecione qual cidade você mora.</p>
+        <div class="container-btn-alerta">
+            <button class="pinhalzinho">
+                <p>Pinhalzinho</p>
+            </button>
+            <button class="smo">
+                <p>São Miguel do Oeste</p>
+            </button>
+        </div>
+    </div>
+</div>

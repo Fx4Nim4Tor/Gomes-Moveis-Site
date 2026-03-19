@@ -2,22 +2,31 @@
     width: 100%;
     padding: 20px;
     display: flex;
+    align-items: flex-start;
     gap: 20px;
-    background-color: #823d3d;
+    background-color: #f1f1f1;
 }
 /*filtros*/
+
 .filtro{
-    padding: 20px;
-
+    margin-top: 50px;
+    padding: 40px;
+    position: sticky;
+    top: 100px; /* 👈 ESSENCIAL */
     background-color: aquamarine;
+    font-size: none;
+    text-decoration: none;
 }
-
-
+.filtro ul {
+    list-style: none;
+    padding-left: 0;
+}
 
 /* produtos */
 .container-itens{
+    margin-top: 50px;
     width: 100%;
-    padding: 40px;
+    padding: 20px;
 
     background-color: aquamarine;
 }
