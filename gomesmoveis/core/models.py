@@ -29,6 +29,10 @@ class Produto(models.Model):
     TIPOS = [
         ("cadeira","Cadeira"),
         ("mesa","Mesa"),
+        ("longarina","Longarina"),
+        ("roupeiro","Roupeiro"),
+        ("arquivo","Arquivos"),
+        ("armario","Armários"),
         ("outros", "Outros")
     ]
 

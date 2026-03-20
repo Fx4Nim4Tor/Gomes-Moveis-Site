@@ -27,8 +27,6 @@
     margin-top: 50px;
     width: 100%;
     padding: 20px;
-
-    background-color: aquamarine;
 }
 
 .container-produtos{
@@ -37,12 +35,12 @@
     padding: 16px;
     gap: 30px;
     display: grid;
-    grid-template-columns: repeat(4, minmax(100px, 370px));
+    grid-template-columns: repeat(3, minmax(100px, 370px));
     justify-content: center;
 }
 .container-produtos a{
     border-radius: 20px;
-    border: 1px solid rgba(255,255,255,0.5);
+    
     transition: transform 0.5s ease;
     background-color: white;
 
