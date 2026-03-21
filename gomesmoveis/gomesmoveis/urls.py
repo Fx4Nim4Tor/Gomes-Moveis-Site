@@ -1,31 +1,26 @@
-"""
-URL configuration for gomesmoveis project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/6.0/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
 from django.urls import path, include
-from core.views import adm, produto ,inicio, produtos
+from core.views import produto ,inicio, produtos,buscar,adm_dashboard,adm_login,adm_logout,adm_categoria_criar,adm_categoria_deletar,adm_categoria_editar,adm_categorias
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-
+    path('buscar/',buscar, name='buscar'),
     path("produtos/",produtos, name="produtos"),
     path("produtos/<slug:slug>/",produto, name="produto"),
-    path("admin/",admin.site.urls), #
-    path("", inicio,name="inicio")
+    path("admin/",admin.site.urls),
+    path("", inicio,name="inicio"),
+
+    # tela de adm
+    path("adm/login/", adm_login, name="adm_login"),
+    path("adm/logout/", adm_logout, name="adm_logout"),
+    path("adm/", adm_dashboard, name="adm_dashboard"),
+
+    # Categorias
+    path("adm/categorias/", adm_categorias, name="adm_categorias"),
+    path("adm/categorias/criar/", adm_categoria_criar, name="adm_categoria_criar"),
+    path("adm/categorias/editar/<int:id>/", adm_categoria_editar, name="adm_categoria_editar"),
+    path("adm/categorias/deletar/<int:id>/", adm_categoria_deletar, name="adm_categoria_deletar"),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

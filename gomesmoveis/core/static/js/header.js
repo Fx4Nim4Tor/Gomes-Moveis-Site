@@ -21,3 +21,53 @@ function fecharAlerta(){
 function abrirAlerta(){
     document.getElementById("alerta").style.display = "flex";
 }
+
+const inputBusca = document.getElementById('input-busca');
+const dropdown = document.getElementById('dropdown-busca');
+
+let timer = null; // para não disparar a cada letra digitada
+
+inputBusca.addEventListener('input', function () {
+    const query = this.value.trim();
+
+    clearTimeout(timer); // cancela a requisição anterior
+
+    if (query.length < 2) {
+        dropdown.classList.remove('ativo');
+        dropdown.innerHTML = '';
+        return;
+    }
+
+    // Espera 300ms depois que o usuário parar de digitar
+    timer = setTimeout(() => {
+        fetch(`/buscar/?q=${encodeURIComponent(query)}`)
+            .then(res => res.json())
+            .then(data => {
+                dropdown.innerHTML = '';
+
+                if (data.resultados.length === 0) {
+                    dropdown.innerHTML = '<p class="busca-vazia">Nenhum produto encontrado</p>';
+                } else {
+                    data.resultados.forEach(p => {
+                        const item = document.createElement('a');
+                        item.href = `/produto/${p.slug}/`;
+                        item.classList.add('item-busca');
+                        item.innerHTML = `
+                            ${p.imagem ? `<img src="${p.imagem}" alt="${p.nome}">` : ''}
+                            <span>${p.nome}</span>
+                        `;
+                        dropdown.appendChild(item);
+                    });
+                }
+
+                dropdown.classList.add('ativo');
+            });
+    }, 300);
+});
+
+// Fecha o dropdown ao clicar fora
+document.addEventListener('click', function (e) {
+    if (!inputBusca.contains(e.target) && !dropdown.contains(e.target)) {
+        dropdown.classList.remove('ativo');
+    }
+});

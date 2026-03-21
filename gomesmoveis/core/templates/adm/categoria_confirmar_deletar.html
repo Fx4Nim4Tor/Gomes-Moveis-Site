@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Deletar Categoria - ADM</title>
+</head>
+<body>
+    <h1>Deletar categoria</h1>
+    <p>Tem certeza que quer deletar <strong>{{ categoria.nome }}</strong>?</p>
+    <p style="color:red">⚠️ Todos os produtos dessa categoria também serão deletados!</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Sim, deletar</button>
+        <a href="{% url 'adm_categorias' %}">Cancelar</a>
+    </form>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Login ADM</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/adm_login.css' %}">
+</head>
+<body>
+    <div class="container-login">
+        <h1>Gomes Móveis</h1>
+        <h2>Área Administrativa</h2>
+
+        {% if erro %}
+            <p class="erro">{{ erro }}</p>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Usuário" required>
+            <input type="password" name="password" placeholder="Senha" required>
+            <button type="submit">Entrar</button>
+        </form>
+    </div>
+</body>
+</html>

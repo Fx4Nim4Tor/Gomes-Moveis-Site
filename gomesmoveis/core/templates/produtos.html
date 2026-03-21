@@ -4,6 +4,7 @@
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/produtos.css' %}">
 {% endblock %}
+
 {% block js %}
 <script src="{% static 'js/produtos.js' %}"></script>
 {% endblock %}
@@ -61,7 +62,7 @@
 
     <div class="container-itens">
         <!-- produto -->
-        <div class="container-produtos">
+        <div class="container-produtos" id="lista-produtos">
             {% for p in produtos %}
             <a href="{% url 'produto' p.slug %}">
                 <div class="img-container">
@@ -73,6 +74,14 @@
             </a>
             {% endfor %}
         </div>
+        <!-- Botão carregar mais -->
+        {% if produtos.has_next %}
+        <div class="container-carregar-mais" id="container-carregar-mais">
+            <button class="btn-carregar-mais" id="btn-carregar-mais" data-proxima-pagina="{{ produtos.next_page_number }}">
+                <p>Carregar mais</p>
+            </button>
+        </div>
+        {% endif %}
     </div>
 </div>
 

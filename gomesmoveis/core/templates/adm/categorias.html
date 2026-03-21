@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Categorias - ADM</title>
+</head>
+<body>
+    <h1>Categorias</h1>
+    <a href="{% url 'adm_categoria_criar' %}">+ Nova categoria</a>
+    <a href="{% url 'adm_dashboard' %}">← Voltar</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Slug</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in categorias %}
+            <tr>
+                <td>{{ c.nome }}</td>
+                <td>{{ c.slug }}</td>
+                <td>
+                    <a href="{% url 'adm_categoria_editar' c.id %}">Editar</a>
+                    <a href="{% url 'adm_categoria_deletar' c.id %}">Deletar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3">Nenhuma categoria cadastrada.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

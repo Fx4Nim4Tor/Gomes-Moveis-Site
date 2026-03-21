@@ -1,0 +1,10 @@
+{% for p in produtos %}
+<a href="{% url 'produto' p.slug %}">
+    <div class="img-container">
+        <img src="{{ p.imagens.first.imagem.url }}">
+    </div>
+    <div class="paragrafo-produto">
+        <p>{{ p.nome }}</p>
+    </div>
+</a>
+{% endfor %}
