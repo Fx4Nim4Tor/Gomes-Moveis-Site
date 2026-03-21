@@ -30,17 +30,17 @@
             <button class="executivo" data-url="{% url 'produtos' %}?categoria=executiva">
                 <p>Cadeiras Executivas</p>
             </button>
-            <button class="gamer" data-url="{% url 'produtos' %}?categoria=gamer">
-                <p>Cadeiras Gamer</p>
+            <button class="gamer" data-url="{% url 'produtos' %}?categoria=diretor">
+                <p>Cadeiras Diretor</p>
             </button>
-            <button class="ergonomica" data-url="{% url 'produtos' %}?categoria=ergonomica">
-                <p>Cadeiras Ergonômicas</p>
+            <button class="ergonomica" data-url="{% url 'produtos' %}?categoria=presidente">
+                <p>Cadeiras Presidente</p>
             </button>
-            <button class="escritorio" data-url="{% url 'produtos' %}?categoria=escritorio">
-                <p>Mesas de Escritório</p>
+            <button class="escritorio" data-url="{% url 'produtos' %}?categoria=mesas-retas">
+                <p>Mesas de Reta</p>
             </button>
-            <button class="home-office" data-url="{% url 'produtos' %}?categoria=home-office">
-                <p>Mesas para Home Office</p>
+            <button class="home-office" data-url="{% url 'produtos' %}?categoria=mesas-em-l">
+                <p>Mesas em L</p>
             </button>
         </div>
     </div>
@@ -140,9 +140,8 @@
         <div class="Categorias-footer">
             <h1>Categorias</h1>
             <ul class="mov">
-                <li><a href="">Cadeiras</a></li>
-                <li><a href="">Mesas</a></li>
-                <li><a href="">Ofertas</a></li>
+                <li><a href="{% url 'produtos' %}?tipo=cadeira">Cadeiras</a></li>
+                <li><a href="{% url 'produtos' %}?tipo=mesa">Mesas</a></li>
                 <br>
             </ul>
         </div>

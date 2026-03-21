@@ -10,7 +10,11 @@
 
 {% block content %}
 <!-- conteudo -->
-
+<div class="move">
+    <a href="{% url 'inicio' %}">inicio</a>
+    <p>/</p>
+    <a href="{% url 'produtos' %}">produtos</a>
+</div>
 
 
 <!-- aqui ta puxando todos os produtos mas tem que mudar pra puxar nao todos de uma vez se nao vai de f o site -->
@@ -24,28 +28,34 @@
             <ul>
                 {% for c in categorias%}
                 <li>
-                    <label>
-                        <input type="checkbox" name="categoria" value="{{ c.slug }}"
-                        {% if c.slug in request.GET.categoria %}checked{% endif %}>
-                        {{ c.nome }}
+                    <label class="label-categoria">
+                        <div class="container-nome-categoria">
+                            <input type="checkbox" name="categoria" value="{{ c.slug }}"
+                            {% if c.slug in request.GET.categoria %}checked{% endif %}>
+                            {{ c.nome }}
+                        </div>
                     </label>
                 </li>
                 {% endfor %}
             </ul>
             <!-- tipo -->
-            <h3>Tipos</h3>
+            <h1>Tipos</h1>
             <ul>
                 {% for value, label in tipos %}
                 <li>
-                    <label>
-                        <input type="checkbox" name="tipo" value="{{ value }}"
-                        {% if value in request.GET.tipo %}checked{% endif %}>
-                        {{ label }}
+                    <label class="label-categoria">
+                        <div class="container-nome-categoria">
+                            <input type="checkbox" name="tipo" value="{{ value }}"
+                            {% if value in request.GET.tipo %}checked{% endif %}>
+                            {{ label }}
+                        </div>
                     </label>
                 </li>
                 {% endfor %}
             </ul>
-            <button type="submit">Filtrar</button>
+            <button type="submit" class="btn-filtrar">
+                <p>Filtrar</p>
+            </button>
         </form>
     </div>
 
@@ -63,6 +73,49 @@
             </a>
             {% endfor %}
         </div>
+    </div>
+</div>
+
+
+<div class="footer">
+    <br><br><br><br><br>
+    <div class="container-footer">
+        <div class="Atendimento-footer">
+            <h1>Atendimento</h1>
+            <ul class="mov">
+                <li><a href="">Contato</a></li>
+                <li><a href="">Garantia</a></li>
+            </ul>
+        </div>
+        <div class="Categorias-footer">
+            <h1>Categorias</h1>
+            <ul class="mov">
+                <li><a href="{% url 'produtos' %}?tipo=cadeira">Cadeiras</a></li>
+                <li><a href="{% url 'produtos' %}?tipo=mesa">Mesas</a></li>
+                <br>
+            </ul>
+        </div>
+        <div class="Redes-Sociais-footer">
+            <h1>Redes Sociais</h1>
+            <p>Siga-nos nas redes sociais</p>
+            <div class="icon-footer">
+                <a href="https://www.instagram.com/gomesmoveis.escritorio/" target="_blank">
+                    <i class="fa-brands fa-instagram instagram"></i>
+                </a>
+                <a href="https://www.facebook.com/gomesmoveis.escritorio?locale=pt_BR" target="_blank">
+                    <i class="fa-brands fa-facebook facebook"></i>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+    <div class="container-direitos">
+        <h1>
+            Gomes Móveis
+        </h1>
+        <p>
+            © 2026 Gomes Móveis. Todos os direitos reservados.
+        </p>
     </div>
 </div>
 {% endblock %}
