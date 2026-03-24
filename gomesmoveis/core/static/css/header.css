@@ -33,15 +33,6 @@
     gap: 30px;
 }
 
-@media (max-width: 1100px){
-
-    .menu-header{
-        display: none;
-    }
-
-}
-
-
 .menu-header a{
     text-decoration:none;
     color: rgb(242, 242, 242);
@@ -51,7 +42,60 @@
 .menu-header a:hover{
     color: rgb(255, 193, 193);
 }
+.menu-header-1100px{
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    background: transparent;
+    width: 30px;
+    height: 21px;
+    border: none;
+    cursor: pointer;
+}
+.linha {
+    height: 3px;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 2px;
+}
 
+/* quando clica no botao para aparecer o menu */
+.menu-lateral-container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    display: none;
+}
+.drawer-header{
+    width: 100%;
+    z-index: 1001;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(5px);
+}
+.overlay-header{
+    width: 500px;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    background-color: #ffffff;
+    z-index: 1001;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+}
+.overlay-header.aberto {
+    transform: translateX(0);
+}
+.menu-header-overlay a{
+    text-decoration:none;
+    font-style: none;
+    font-size: 28px;
+    color:#4A4A4A;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+}
 
 /* busca de item */
 .li-busca-header{
@@ -59,13 +103,13 @@
     width: 300px;
 }
 
-@media (max-width: 780px){
+/* @media (max-width: 780px){
 
     .li-busca-header{
         display: none;
     }
 
-}
+} */
 
 .li-busca-header input{
     width: 100%;
@@ -276,4 +320,28 @@
     font-size: 15px;
     font-family: "Poppins", sans-serif;
     font-weight: 500;
+}
+
+
+@media (max-width: 1024px){
+    .menu-header{
+        display: none;
+    }
+    .menu-header-1100px{
+        display: flex;
+    }
+    .header{
+        height: 120px;
+    }
+    .container-header{
+        padding-right: 50px;
+        padding-left: 50px;
+        justify-content: space-between;
+    }
+    .btn-whatsapp-header{
+        display: none;
+    }
+    .li-busca-header{
+        width: 500px;
+    }
 }

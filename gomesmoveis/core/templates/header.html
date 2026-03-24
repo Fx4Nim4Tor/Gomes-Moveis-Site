@@ -20,6 +20,11 @@
         <button class="btn-whatsapp-header">
             WhatsApp
         </button>
+        <button class="menu-header-1100px">
+            <span class="linha"></span>
+            <span class="linha"></span>
+            <span class="linha"></span>
+        </button>
     </div>
 </header>
 
@@ -37,5 +42,17 @@
                 <p>São Miguel do Oeste</p>
             </button>
         </div>
+    </div>
+</div>
+<div class="menu-lateral-container">
+    <div class="drawer-header"></div>
+    <div class="overlay-header">
+        <ul class="menu-header-overlay">
+            <li><a href="{% url 'inicio' %}">Inicio</a></li>
+            <li><a href="{% url 'produtos' %}">Produtos</a></li>
+            <li><a href="{% url 'produtos' %}?tipo=mesa">Mesas</a></li>
+            <li><a href="{% url 'produtos' %}?tipo=cadeiras">Cadeiras</a></li>
+            <li><a href="{% url 'produtos' %}?categoria=executiva">Executivo</a></li>
+        </ul>
     </div>
 </div>

@@ -36,13 +36,13 @@ def produto(request, slug):
 from django.core.paginator import Paginator
 
 
-#para colocar os produtos na pagina onde mostra todos os produtos
+
 def produtos(request):
     lista_produtos = Produto.objects.all()
     categorias = Categoria.objects.all()
     tipo_produtos = Produto.TIPOS
 
-    # filtra por categoria se tiver
+    #filtra por categoria
     categorias_selecionadas = request.GET.getlist('categoria')
     if categorias_selecionadas:
         lista_produtos = lista_produtos.filter(
@@ -56,7 +56,7 @@ def produtos(request):
             tipo__in=tipos_selecionados
         )
     
-    # Verifica se não tem nenhum filtro ativo
+    #Verifica se não tem nenhum filtro ativo
     sem_filtro = not categorias_selecionadas and not tipos_selecionados
     # Detecta se é a primeira página (page=1 ou sem page na URL)
     page_number = request.GET.get('page', 1)
@@ -64,7 +64,7 @@ def produtos(request):
     if sem_filtro:
         ids = list(lista_produtos.values_list('id', flat=True))
 
-        # Se for page=1 (ou primeira vez), gera nova ordem aleatória e salva na sessão
+        # Se for page=1 ou primeira vez, gera nova ordem aleatória e salva na sessão
         if str(page_number) == '1':
             random.shuffle(ids)
             request.session['ordem_produtos'] = ids

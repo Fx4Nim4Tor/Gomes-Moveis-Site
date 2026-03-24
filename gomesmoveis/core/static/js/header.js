@@ -22,6 +22,37 @@ function abrirAlerta(){
     document.getElementById("alerta").style.display = "flex";
 }
 
+
+//menu overlay
+const overlay = document.getElementsByClassName("menu-header-1100px")[0];
+overlay.addEventListener("click", abreMenu)
+
+function abreMenu(){
+    document.getElementsByClassName("menu-lateral-container")[0].style.display = "flex";
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            document.getElementsByClassName("overlay-header")[0].classList.add("aberto");
+        });
+    });
+
+}
+
+const drawer = document.getElementsByClassName("drawer-header")[0];
+drawer.addEventListener("click", fecharMenu)
+
+function fecharMenu(){
+    const overlayHeader = document.getElementsByClassName("overlay-header")[0];
+    const container = document.getElementsByClassName("menu-lateral-container")[0];
+    
+    overlayHeader.classList.remove("aberto");
+    
+    setTimeout(() => {
+        container.style.display = "none";
+    }, 300);
+}
+
+
+//busca
 const inputBusca = document.getElementById('input-busca');
 const dropdown = document.getElementById('dropdown-busca');
 
