@@ -1,0 +1,104 @@
+.header-adm{
+    width: 15%;
+    height: 100%;
+    padding: 20px;
+    
+    background-color: #D32F2F;
+}
+.logo-header-adm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    font-family: "Poppins", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: white;
+    border-bottom: 1px solid rgb(243, 173, 173);
+}
+.logo-header-adm h1{
+    margin-bottom: 10px;
+}
+.container-nav-adm{
+    margin-top: 50px;
+    width: 100%;
+}
+.btn-categoria-adm{
+    width: 100%;
+    height: 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+    border: none;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    transition: transform 0.3s;
+}
+.btn-categoria-adm:hover{
+    background-color: #ffdcdc;
+    transform: scale(1.02);
+}
+.btn-categoria-adm p{
+    font-family: "Poppins", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #4A4A4A;
+}
+
+.btn-produtos-adm{
+    width: 100%;
+    height: 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+    border: none;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    transition: transform 0.3s;
+}
+.btn-produtos-adm:hover{
+    background-color: #ffdcdc;
+    transform: scale(1.02);
+}
+.btn-produtos-adm p{
+    font-family: "Poppins", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #4A4A4A;
+}
+
+
+/* botao para deslogar SAIR DESSE KRL KRL NAO PODE FALAR NA DOCUMENTACAO KRL */
+.btn-sair-adm{
+    width: 100%;
+    height: 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+    border: none;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    transition: transform 0.3s;
+}
+.btn-sair-adm:hover{
+    background-color: #ffdcdc;
+    transform: scale(1.02);
+}
+.btn-sair-adm p{
+    font-family: "Poppins", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #4A4A4A;
+}

@@ -1,16 +1,13 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>ADM - Gomes Móveis</title>
-</head>
-<body>
-    <h1>Painel Administrativo</h1>
+{% extends 'adm/base_adm.html' %}
+{% load static %}
 
-    <nav>
-        <a href="{% url 'adm_categorias' %}">Categorias</a>
-    </nav>
+{% block css %}
+{% endblock %}
 
-    <a href="{% url 'adm_logout' %}">Sair</a>
-</body>
-</html>
+{% block content %}
+
+
+
+
+
+{% endblock %}

@@ -155,11 +155,26 @@ def adm_dashboard(request):
     return render(request, 'adm/dashboard.html')
 
 
+
+
 # cadastrar categorias
 @login_required(login_url='/adm/login/')
 def adm_categorias(request):
     categorias = Categoria.objects.all()
-    return render(request, 'adm/categorias.html', {'categorias': categorias})
+    erro = None
+
+
+    if request.method == 'POST':
+        nome = request.POST.get('nome', '').strip()
+        if not nome:
+            erro = 'O nome é obrigatório.'
+        elif Categoria.objects.filter(nome=nome).exists():
+            erro = 'Já existe uma categoria com esse nome.'
+        else:
+            Categoria.objects.create(nome=nome)
+            return redirect('adm_categorias')
+
+    return render(request, 'adm/categorias.html', {'categorias': categorias, 'erro': erro, 'acao': 'Criar'})
 
 
 @login_required(login_url='/adm/login/')

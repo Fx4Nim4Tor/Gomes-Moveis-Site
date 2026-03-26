@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin | Gomes Móveis </title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    
+    <link rel="stylesheet" href="{% static 'css/adm/style_adm.css' %}">
+    <link rel="stylesheet" href="{% static 'css/adm/header_adm.css' %}">
+    {% block css %}{% endblock %}
+
+    
+</head>
+<body>
+<div class="container_base_adm">
+    {% include 'adm/header_adm.html' %}
+
+    {% block content %}
+    {% endblock %}
+
+    <script src="{% static 'js/adm/header_adm.js' %}"></script>
+    {% block js %}{% endblock %}
+</div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+.container-categoria-adm{
+    width: 100%;
+    height: 100%;
+
+    padding: 50px;
+}
+
+.table-container {
+    width: 60%;
+    max-height: 70vh;   /* altura do scroll */
+    overflow-y: auto;    /* scroll vertical */
+}
+/* largura do scroll */
+.table-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* fundo */
+.table-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+/* “barra” do scroll */
+.table-container::-webkit-scrollbar-thumb {
+    background: #D32F2F;
+    border-radius: 10px;
+}
+
+/* hover */
+.table-container::-webkit-scrollbar-thumb:hover {
+    background: #a52828;
+}
+
+
+.lista-categorias-adm{
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 10px 10px;
+}
+.thead-categorias-adm{
+    width: 100%;
+    background-color: white;
+}
+.thead-categorias-adm tr{
+    height: 50px;
+    border-radius: 10px;
+
+    font-family: "Poppins", sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #4A4A4A;
+}
+
+
+.tbody-categorias-adm{
+    height: 500px;
+    background-color: #D32F2F;
+}
+.tbody-categorias-adm td {
+    text-align: center;
+    border-radius: 10px;
+    font-family: "Poppins", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: white;
+}
+
+.btns-del-adit{
+    width: 200px;
+}
+
+.btns-del-adit button{
+    width: 100%;
+}
