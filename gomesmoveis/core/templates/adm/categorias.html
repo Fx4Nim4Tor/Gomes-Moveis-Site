@@ -6,32 +6,34 @@
 {% endblock %}
 
 {% block js %}
-<script src="{% static '' %}"></script>
+<script src="{% static 'js/adm/categorias_adm.js' %}"></script>
 {% endblock %}
 
 {% block content %}
 <div class="container-categoria-adm">
-
-    <h1>{{ acao }} Categoria</h1>
+    <div class="container-h1-adm">
+        <h1>{{ acao }} Categoria</h1>
+    </div>
     {% if erro %}
         <p style="color:red">{{ erro }}</p>
     {% endif %}
 
-    <form method="post">
+    <form class="form-categoria-adm" method="post">
         {% csrf_token %}
-        <label>Nome</label>
-        <input type="text" name="nome" value="{{ categoria.nome|default:'' }}" required>
-        <button type="submit">{{ acao }}</button>
+        <input class="input-form-categoria-adm" placeholder="Nome da categoria:" type="text" name="nome" value="{{ categoria.nome|default:'' }}" required>
+        <button class="subit-form-categoria-adm" type="submit">{{ acao }}</button>
     </form>
-
-    <h1>Categorias</h1>
+    <div class="container-h1-adm">
+        <h1>Categorias</h1>
+    </div>
     <div class="table-container">
         <table class="lista-categorias-adm">
             <thead class="thead-categorias-adm">
                 <tr>
                     <th>Nome</th>
                     <th>Slug</th>
-                    <th>Ações</th>
+                    <th>Editar</th>
+                    <th>Apagar</th>
                 </tr>
             </thead>
                 <tbody class="tbody-categorias-adm">
@@ -41,6 +43,8 @@
                         <td>{{ c.slug }}</td>
                         <td class="btns-del-adit">
                             <button class="btn-edit-adm" data-url="{% url 'adm_categoria_editar' c.id %}">Editar</button>
+                        </td>
+                        <td class="btns-del-adit">
                             <button class="btn-delet-adm" data-url="{% url 'adm_categoria_deletar' c.id %}">Deletar</button>
                         </td>
                     </tr>

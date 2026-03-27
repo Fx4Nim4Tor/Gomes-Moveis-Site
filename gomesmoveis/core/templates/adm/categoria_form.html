@@ -1,22 +1,35 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ acao }} Categoria - ADM</title>
-</head>
-<body>
-    <h1>{{ acao }} Categoria</h1>
-    <a href="{% url 'adm_categorias' %}">← Voltar</a>
+{% extends 'adm/base_adm.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/adm/categorias_adm.css' %}">
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/adm/edita_categoria_adm.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+
+<div class="container-categoria-adm">
+    <div class="container-h1-adm">
+        <h1>{{ acao }} Categoria</h1>
+    </div>
+    
 
     {% if erro %}
         <p style="color:red">{{ erro }}</p>
     {% endif %}
 
-    <form method="post">
+    <form class="form-categoria-adm" method="post">
         {% csrf_token %}
-        <label>Nome</label>
-        <input type="text" name="nome" value="{{ categoria.nome|default:'' }}" required>
-        <button type="submit">{{ acao }}</button>
+        <input class="input-form-categoria-adm" placeholder="Nome da categoria:" type="text" name="nome" value="{{ categoria.nome|default:'' }}" required>
+        <button class="subit-form-categoria-adm" type="submit">{{ acao }}</button>
     </form>
-</body>
-</html>
+    <div class="container-voltar-categoria">
+        <button class="voltar-categoria" data-url="{% url 'adm_categorias' %}">← Voltar</button>
+    </div>
+</div>
+
+
+{% endblock %}
