@@ -31,5 +31,5 @@ function fecharAlerta(){
     document.getElementById("alerta").style.display = "none";
 }
 function abrirAlerta(){
-    document.getElementById("alerta").style.display = "flex";
+    document.getElementsByClassName("alerta")[0].style.display = "flex";
 }
