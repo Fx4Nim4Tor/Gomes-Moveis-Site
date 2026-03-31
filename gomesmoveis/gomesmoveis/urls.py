@@ -18,7 +18,6 @@ urlpatterns = [
 
     # Categorias
     path("adm/categorias/", adm_categorias, name="adm_categorias"),
-    path("adm/categorias/criar/", adm_categoria_criar, name="adm_categoria_criar"),
     path("adm/categorias/editar/<int:id>/", adm_categoria_editar, name="adm_categoria_editar"),
     path("adm/categorias/deletar/<int:id>/", adm_categoria_deletar, name="adm_categoria_deletar"),
 ]
