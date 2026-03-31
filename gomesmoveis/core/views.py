@@ -226,3 +226,9 @@ def adm_categoria_deletar(request, id):
         return redirect('adm_categorias')
 
     return render(request, 'adm/categoria_confirmar_deletar.html', {'categoria': categoria})
+
+
+# PRODUTOS
+@login_required
+def adm_produtos_criar(request):
+    return render(request, "adm/produtos.html")
