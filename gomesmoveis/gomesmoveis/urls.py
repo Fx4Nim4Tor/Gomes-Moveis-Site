@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from core.views import produto ,inicio, produtos,buscar,adm_dashboard,adm_login,adm_logout,adm_categoria_criar,adm_categoria_deletar,adm_categoria_editar,adm_categorias,adm_produtos_criar
+from core.views import produto ,inicio, produtos,buscar,adm_dashboard,adm_login,adm_logout,adm_categoria_criar,adm_categoria_deletar,adm_categoria_editar,adm_categorias,adm_produtos, adm_produto_criar, adm_produto_editar, adm_produto_deletar
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -22,7 +22,10 @@ urlpatterns = [
     path("adm/categorias/deletar/<int:id>/", adm_categoria_deletar, name="adm_categoria_deletar"),
 
     # Produtos
-    path("adm/produtos/",adm_produtos_criar, name="adm_produtos_criar"),
+    path("adm/produtos/", adm_produtos, name="adm_produtos"),
+    path("adm/produtos/criar/", adm_produto_criar, name="adm_produto_criar"),
+    path("adm/produtos/editar/<int:id>/", adm_produto_editar, name="adm_produto_editar"),
+    path("adm/produtos/deletar/<int:id>/", adm_produto_deletar, name="adm_produto_deletar"),
 ]
 
 

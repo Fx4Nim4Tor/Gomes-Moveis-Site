@@ -1,13 +1,52 @@
 {% extends 'adm/base_adm.html' %}
 {% load static %}
-
 {% block css %}
+<link rel="stylesheet" href="{% static 'css/adm/produtos.css' %}">
 {% endblock %}
 
 {% block content %}
+<div class="container-adm-produtos">
+  <div class="">
+    <h2>Produtos</h2>
+    <a href="{% url 'adm_produto_criar' %}" class="btn btn-primary">+ Novo Produto</a>
+  </div>
 
-
-
-
-
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Imagem</th>
+        <th>Nome</th>
+        <th>Categoria</th>
+        <th>Tipo</th>
+        <th>Destaque</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for p in produtos %}
+      <tr>
+        <td>
+          {% with p.imagens.first as img %}
+            {% if img %}
+              <img src="{{ img.imagem.url }}" style="height:50px; object-fit:cover;" class="rounded">
+            {% else %}
+              <span class="text-muted">—</span>
+            {% endif %}
+          {% endwith %}
+        </td>
+        <td>{{ p.nome }}</td>
+        <td>{{ p.categoria.nome }}</td>
+        <td>{{ p.get_tipo_display }}</td>
+        <td>{% if p.destaque %}{% else %}—{% endif %}</td>
+        <td>
+          <a href="{% url 'adm_produto_editar' p.id %}" class="btn btn-sm btn-warning">Editar</a>
+          <a href="{% url 'adm_produto_deletar' p.id %}" class="btn btn-sm btn-danger">Deletar</a>
+        </td>
+      </tr>
+      {% empty %}
+        <tr><td colspan="6" class="text-center">Nenhum produto cadastrado.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 {% endblock %}

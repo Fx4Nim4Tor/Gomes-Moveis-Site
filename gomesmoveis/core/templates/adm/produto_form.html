@@ -1,0 +1,84 @@
+{% extends 'adm/base_adm.html' %}
+
+{% block content %}
+<h2>{{ acao }} Produto</h2>
+
+{% if erro %}
+  <div class="alert alert-danger">{{ erro }}</div>
+{% endif %}
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+
+  <div class="mb-3">
+    <label>Nome</label>
+    <input type="text" name="nome" class="form-control"
+           value="{{ produto.nome|default:'' }}" required>
+  </div>
+
+  <div class="mb-3">
+    <label>Descrição</label>
+    <textarea name="descricao" class="form-control" rows="4" required>{{ produto.descricao|default:'' }}</textarea>
+  </div>
+
+  <div class="mb-3">
+    <label>Categoria</label>
+    <select name="categoria" class="form-control" required>
+      <option value="">-- Selecione --</option>
+      {% for cat in categorias %}
+        <option value="{{ cat.id }}"
+          {% if produto.categoria_id == cat.id %}selected{% endif %}>
+          {{ cat.nome }}
+        </option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label>Tipo</label>
+    <select name="tipo" class="form-control">
+      {% for valor, label in tipos %}
+        <option value="{{ valor }}"
+          {% if produto.tipo == valor %}selected{% endif %}>
+          {{ label }}
+        </option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="mb-3 form-check">
+    <input type="checkbox" name="destaque" class="form-check-input" id="destaque"
+           {% if produto.destaque %}checked{% endif %}>
+    <label class="form-check-label" for="destaque">Destaque na página inicial</label>
+  </div>
+
+  <!-- Imagens existentes (apenas na edição) -->
+  {% if produto.imagens.all %}
+  <div class="mb-3">
+    <label>Imagens atuais</label>
+    <div class="d-flex gap-3 flex-wrap mt-2">
+      {% for img in produto.imagens.all %}
+      <div class="text-center">
+        <img src="{{ img.imagem.url }}" style="height:100px; object-fit:cover;" class="rounded">
+        <div class="mt-1">
+          <input type="checkbox" name="deletar_imagem" value="{{ img.id }}" id="del_{{ img.id }}">
+          <label for="del_{{ img.id }}" class="text-danger small">Remover</label>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="mb-3">
+    <label>
+      {% if produto %}Adicionar novas imagens{% else %}Imagens{% endif %}
+      <span class="text-muted small">(máx. 3 no total)</span>
+    </label>
+    <input type="file" name="imagens" class="form-control" multiple accept="image/*">
+  </div>
+
+  <button type="submit" class="btn btn-primary">{{ acao }}</button>
+  <a href="{% url 'adm_produtos' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

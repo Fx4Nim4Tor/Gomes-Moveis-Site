@@ -1,0 +1,13 @@
+{% extends 'adm/base_adm.html' %}
+
+{% block content %}
+<h2>Deletar Produto</h2>
+<p>Tem certeza que deseja deletar <strong>{{ produto.nome }}</strong>?
+   Todas as imagens também serão removidas.</p>
+
+<form method="post">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-danger">Sim, deletar</button>
+  <a href="{% url 'adm_produtos' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

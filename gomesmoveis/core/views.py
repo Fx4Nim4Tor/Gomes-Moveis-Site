@@ -1,13 +1,12 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
-from .models import Produto, Categoria
+from .models import Produto, Categoria, ProdutoImagem
 from django.template.loader import render_to_string
 from django.http import JsonResponse
 import random
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
-
 
 # Create your views here.
 def inicio(request):
@@ -228,7 +227,113 @@ def adm_categoria_deletar(request, id):
     return render(request, 'adm/categoria_confirmar_deletar.html', {'categoria': categoria})
 
 
+
+
+
 # PRODUTOS
-@login_required
-def adm_produtos_criar(request):
-    return render(request, "adm/produtos.html")
+@login_required(login_url='/adm/login/')
+def adm_produtos(request):
+    produtos = Produto.objects.prefetch_related('imagens').select_related('categoria').all()
+    return render(request, 'adm/produtos.html', {'produtos': produtos})
+
+
+@login_required(login_url='/adm/login/')
+def adm_produto_criar(request):
+    categorias = Categoria.objects.all()
+    erro = None
+
+    if request.method == 'POST':
+        nome = request.POST.get('nome', '').strip()
+        descricao = request.POST.get('descricao', '').strip()
+        tipo = request.POST.get('tipo', '')
+        categoria_id = request.POST.get('categoria')
+        destaque = request.POST.get('destaque') == 'on'
+        imagens = request.FILES.getlist('imagens')
+
+        if not nome or not descricao or not categoria_id:
+            erro = 'Nome, descrição e categoria são obrigatórios.'
+        elif len(imagens) > 3:
+            erro = 'Você pode enviar no máximo 3 imagens.'
+        else:
+            categoria = get_object_or_404(Categoria, id=categoria_id)
+            produto = Produto.objects.create(
+                nome=nome,
+                descricao=descricao,
+                tipo=tipo,
+                categoria=categoria,
+                destaque=destaque,
+            )
+            for imagem in imagens:
+                ProdutoImagem.objects.create(produto=produto, imagem=imagem)
+
+            return redirect('adm_produtos')
+
+    return render(request, 'adm/produto_form.html', {
+        'categorias': categorias,
+        'tipos': Produto.TIPOS,
+        'erro': erro,
+        'acao': 'Criar',
+    })
+
+
+@login_required(login_url='/adm/login/')
+def adm_produto_editar(request, id):
+    produto = get_object_or_404(Produto, id=id)
+    categorias = Categoria.objects.all()
+    erro = None
+
+    if request.method == 'POST':
+        nome = request.POST.get('nome', '').strip()
+        descricao = request.POST.get('descricao', '').strip()
+        tipo = request.POST.get('tipo', '')
+        categoria_id = request.POST.get('categoria')
+        destaque = request.POST.get('destaque') == 'on'
+        imagens_novas = request.FILES.getlist('imagens')
+        imagens_deletar = request.POST.getlist('deletar_imagem')  # ids das imagens a remover
+
+        if not nome or not descricao or not categoria_id:
+            erro = 'Nome, descrição e categoria são obrigatórios.'
+        else:
+            # Remove imagens marcadas para deletar
+            for img_id in imagens_deletar:
+                img = ProdutoImagem.objects.filter(id=img_id, produto=produto).first()
+                if img:
+                    img.delete()
+
+            total_imagens = produto.imagens.count() + len(imagens_novas)
+            if total_imagens > 3:
+                erro = f'Limite de 3 imagens. Você já tem {produto.imagens.count()} e está adicionando {len(imagens_novas)}.'
+            else:
+                produto.nome = nome
+                produto.descricao = descricao
+                produto.tipo = tipo
+                produto.categoria = get_object_or_404(Categoria, id=categoria_id)
+                produto.destaque = destaque
+                produto.save()
+
+                for imagem in imagens_novas:
+                    ProdutoImagem.objects.create(produto=produto, imagem=imagem)
+
+                return redirect('adm_produtos')
+
+    return render(request, 'adm/produto_form.html', {
+        'produto': produto,
+        'categorias': categorias,
+        'tipos': Produto.TIPOS,
+        'erro': erro,
+        'acao': 'Editar',
+    })
+
+
+@login_required(login_url='/adm/login/')
+def adm_produto_deletar(request, id):
+    produto = get_object_or_404(Produto, id=id)
+
+    if request.method == 'POST':
+        # O delete() de cada ProdutoImagem já remove o arquivo físico
+        for img in produto.imagens.all():
+            img.delete()
+        produto.delete()
+        return redirect('adm_produtos')
+
+    return render(request, 'adm/produto_confirmar_deletar.html', {'produto': produto})
