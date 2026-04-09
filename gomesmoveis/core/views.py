@@ -294,16 +294,18 @@ def adm_produto_editar(request, id):
         if not nome or not descricao or not categoria_id:
             erro = 'Nome, descrição e categoria são obrigatórios.'
         else:
-            # Remove imagens marcadas para deletar
-            for img_id in imagens_deletar:
-                img = ProdutoImagem.objects.filter(id=img_id, produto=produto).first()
-                if img:
-                    img.delete()
+            imagens_restantes = produto.imagens.count() - len(imagens_deletar)
+            total_imagens = imagens_restantes + len(imagens_novas)
 
-            total_imagens = produto.imagens.count() + len(imagens_novas)
             if total_imagens > 3:
-                erro = f'Limite de 3 imagens. Você já tem {produto.imagens.count()} e está adicionando {len(imagens_novas)}.'
+                erro = f'Limite de 3 imagens. Você terá {total_imagens} imagens no total, máximo permitido é 3.'
             else:
+                # Só remove as imagens depois que a validação do total passar
+                for img_id in imagens_deletar:
+                    img = ProdutoImagem.objects.filter(id=img_id, produto=produto).first()
+                    if img:
+                        img.delete()
+
                 produto.nome = nome
                 produto.descricao = descricao
                 produto.tipo = tipo
