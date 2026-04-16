@@ -31,7 +31,7 @@
             <tbody class="tbody-categorias-adm">
                 {% for p in produtos %}
                 <tr>
-                    <td>
+                    <td class="img-produto">
                         {% with p.imagens.first as img %}
                             {% if img %}
                                 <img src="{{ img.imagem.url }}" alt="{{ p.nome }}" class="produto-imagem" />
@@ -45,10 +45,10 @@
                     <td>{{ p.get_tipo_display }}</td>
                     <td>{% if p.destaque %}Sim{% else %}—{% endif %}</td>
                     <td class="btns-del-adit">
-                        <a href="{% url 'adm_produto_editar' p.id %}" class="btn-edit-adm">Editar</a>
+                        <a href="{% url 'adm_produto_editar' p.id %}" class="btn-edit-adm-prod">Editar</a>
                     </td>
                     <td class="btns-del-adit">
-                        <a href="{% url 'adm_produto_deletar' p.id %}" class="btn-delet-adm">Deletar</a>
+                        <a href="{% url 'adm_produto_deletar' p.id %}" class="btn-delet-adm-prod">Deletar</a>
                     </td>
                 </tr>
                 {% empty %}
