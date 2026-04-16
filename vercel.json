@@ -1,10 +1,4 @@
 {
-  "builds": [
-    {
-      "src": "gomesmoveis/wsgi.py",
-      "use": "@vercel/python"
-    }
-  ],
   "routes": [
     {
       "src": "/(.*)",
