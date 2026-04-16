@@ -44,15 +44,26 @@
         </div>
     </div>
 </div>
+
 <div class="menu-lateral-container">
     <div class="drawer-header"></div>
     <div class="overlay-header">
         <ul class="menu-header-overlay">
-            <li><a href="{% url 'inicio' %}">Inicio</a></li>
-            <li><a href="{% url 'produtos' %}">Produtos</a></li>
-            <li><a href="{% url 'produtos' %}?tipo=mesa">Mesas</a></li>
-            <li><a href="{% url 'produtos' %}?tipo=cadeiras">Cadeiras</a></li>
-            <li><a href="{% url 'produtos' %}?categoria=executiva">Executivo</a></li>
+            <button data-url="{% url 'inicio' %}">
+                Inicio
+            </button>
+            <button data-url="{% url 'produtos' %}">
+                Produtos
+            </button>
+            <button data-url="{% url 'produtos' %}?tipo=mesa">
+                Mesas
+            </button>
+            <button data-url="{% url 'produtos' %}?tipo=cadeiras">
+                Cadeiras
+            </button>
+            <button data-url="{% url 'produtos' %}?categoria=executiva">
+                Executivo
+            </button>
         </ul>
     </div>
 </div>

@@ -8,6 +8,7 @@ urlpatterns = [
     path('buscar/',buscar, name='buscar'),
     path("produtos/",produtos, name="produtos"),
     path("produtos/<slug:slug>/",produto, name="produto"),
+    path("produto/<slug:slug>/", produto),
     path("admin/",admin.site.urls),
     path("", inicio,name="inicio"),
 

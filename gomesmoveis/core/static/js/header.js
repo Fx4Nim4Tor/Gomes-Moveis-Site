@@ -102,3 +102,10 @@ document.addEventListener('click', function (e) {
         dropdown.classList.remove('ativo');
     }
 });
+
+
+document.querySelectorAll('.menu-header-overlay button').forEach(btn => {
+    btn.addEventListener('click', function() {
+        window.location.href = this.dataset.url;
+    });
+});

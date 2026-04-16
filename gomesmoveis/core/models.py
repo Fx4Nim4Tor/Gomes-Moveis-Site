@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.text import slugify
 from django.core.exceptions import ValidationError
+from django.core.validators import FileExtensionValidator
+from PIL import Image
 import os
 # Create your models here.
 
@@ -65,6 +67,33 @@ class Produto(models.Model):
         return self.nome
     
 
+ALLOWED_IMAGE_EXTENSIONS = ('jpg', 'jpeg', 'png', 'gif', 'webp', 'svg')
+
+
+def validate_image_file(value):
+    content_type = getattr(value, 'content_type', '')
+    if not content_type.startswith('image/'):
+        raise ValidationError('Formato de imagem inválido. Envie apenas arquivos de imagem.')
+
+    if '.' not in value.name:
+        raise ValidationError('Formato de imagem inválido. Envie um arquivo de imagem com extensão.')
+
+    extension = value.name.rsplit('.', 1)[1].lower()
+    if extension not in ALLOWED_IMAGE_EXTENSIONS:
+        raise ValidationError('Formato de imagem inválido. Envie JPG, PNG, GIF ou WEBP.')
+
+    try:
+        img = Image.open(value)
+        img.verify()
+    except Exception:
+        raise ValidationError('Arquivo enviado não é uma imagem válida.')
+    finally:
+        try:
+            value.seek(0)
+        except Exception:
+            pass
+
+
 class ProdutoImagem(models.Model):
     produto = models.ForeignKey(
         Produto,
@@ -72,7 +101,10 @@ class ProdutoImagem(models.Model):
         related_name="imagens"
     )
 
-    imagem = models.ImageField(upload_to="produtos/")
+    imagem = models.ImageField(
+        upload_to="produtos/",
+        validators=[FileExtensionValidator(allowed_extensions=ALLOWED_IMAGE_EXTENSIONS), validate_image_file]
+    )
 
     def clean(self):
         if self.produto and self.produto.pk:

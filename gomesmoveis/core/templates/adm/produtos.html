@@ -4,13 +4,17 @@
 <link rel="stylesheet" href="{% static 'css/adm/produtos.css' %}"> 
 {% endblock %}
 
+{% block js %}
+<script src="{% static 'js/adm/produto_adm.js' %}"></script>
+{% endblock %}
+
 {% block content %}
 <div class="container-categoria-adm">
     <div class="container-h1-adm">
         <h1>Produtos</h1>
     </div>
     <div class="form-categoria-adm" style="justify-content:flex-start; gap:16px; flex-wrap:wrap;">
-        <a href="{% url 'adm_produto_criar' %}" class="subit-form-categoria-adm">+ Novo Produto</a>
+        <button class="subit-form-categoria-adm" data-url="{% url 'adm_produto_criar' %}" >+ Novo Produto</button>
     </div>
     <div class="container-h1-adm">
         <h1>Lista de produtos</h1>
@@ -45,10 +49,10 @@
                     <td>{{ p.get_tipo_display }}</td>
                     <td>{% if p.destaque %}Sim{% else %}—{% endif %}</td>
                     <td class="btns-del-adit">
-                        <a href="{% url 'adm_produto_editar' p.id %}" class="btn-edit-adm-prod">Editar</a>
+                        <button class="btn-edit-adm" data-url="{% url 'adm_produto_editar' p.id %}">Editar</button>
                     </td>
                     <td class="btns-del-adit">
-                        <a href="{% url 'adm_produto_deletar' p.id %}" class="btn-delet-adm-prod">Deletar</a>
+                        <button class="btn-delet-adm" data-url="{% url 'adm_produto_deletar' p.id %}">Deletar</button>
                     </td>
                 </tr>
                 {% empty %}

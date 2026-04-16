@@ -7,6 +7,37 @@ import random
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
+from PIL import Image
+
+ALLOWED_IMAGE_EXTENSIONS = {'jpg', 'jpeg', 'png', 'gif', 'webp', 'svg'}
+
+
+def validar_imagens_upload(imagens):
+    for imagem in imagens:
+        content_type = getattr(imagem, 'content_type', '')
+        if not content_type.startswith('image/'):
+            return 'Formato de imagem inválido. Envie apenas arquivos de imagem.'
+
+        if '.' not in imagem.name:
+            return 'Formato de imagem inválido. Envie um arquivo de imagem com extensão.'
+
+        extension = imagem.name.rsplit('.', 1)[1].lower()
+        if extension not in ALLOWED_IMAGE_EXTENSIONS:
+            return 'Formato de imagem inválido. Envie JPG, PNG, GIF ou WEBP.'
+
+        try:
+            img = Image.open(imagem)
+            img.verify()
+        except Exception:
+            return 'Arquivo enviado não é uma imagem válida.'
+        finally:
+            try:
+                imagem.seek(0)
+            except Exception:
+                pass
+
+    return None
+
 
 # Create your views here.
 def inicio(request):
@@ -255,6 +286,9 @@ def adm_produto_criar(request):
         elif len(imagens) > 3:
             erro = 'Você pode enviar no máximo 3 imagens.'
         else:
+            erro = validar_imagens_upload(imagens)
+
+        if not erro:
             categoria = get_object_or_404(Categoria, id=categoria_id)
             produto = Produto.objects.create(
                 nome=nome,
@@ -294,29 +328,32 @@ def adm_produto_editar(request, id):
         if not nome or not descricao or not categoria_id:
             erro = 'Nome, descrição e categoria são obrigatórios.'
         else:
-            imagens_restantes = produto.imagens.count() - len(imagens_deletar)
-            total_imagens = imagens_restantes + len(imagens_novas)
+            erro = validar_imagens_upload(imagens_novas)
 
-            if total_imagens > 3:
-                erro = f'Limite de 3 imagens. Você terá {total_imagens} imagens no total, máximo permitido é 3.'
-            else:
-                # Só remove as imagens depois que a validação do total passar
-                for img_id in imagens_deletar:
-                    img = ProdutoImagem.objects.filter(id=img_id, produto=produto).first()
-                    if img:
-                        img.delete()
+            if not erro:
+                imagens_restantes = produto.imagens.count() - len(imagens_deletar)
+                total_imagens = imagens_restantes + len(imagens_novas)
 
-                produto.nome = nome
-                produto.descricao = descricao
-                produto.tipo = tipo
-                produto.categoria = get_object_or_404(Categoria, id=categoria_id)
-                produto.destaque = destaque
-                produto.save()
+                if total_imagens > 3:
+                    erro = f'Limite de 3 imagens. Você terá {total_imagens} imagens no total, máximo permitido é 3.'
+                else:
+                    # Só remove as imagens depois que a validação do total passar
+                    for img_id in imagens_deletar:
+                        img = ProdutoImagem.objects.filter(id=img_id, produto=produto).first()
+                        if img:
+                            img.delete()
 
-                for imagem in imagens_novas:
-                    ProdutoImagem.objects.create(produto=produto, imagem=imagem)
+                    produto.nome = nome
+                    produto.descricao = descricao
+                    produto.tipo = tipo
+                    produto.categoria = get_object_or_404(Categoria, id=categoria_id)
+                    produto.destaque = destaque
+                    produto.save()
 
-                return redirect('adm_produtos')
+                    for imagem in imagens_novas:
+                        ProdutoImagem.objects.create(produto=produto, imagem=imagem)
+
+                    return redirect('adm_produtos')
 
     return render(request, 'adm/produto_form.html', {
         'produto': produto,
