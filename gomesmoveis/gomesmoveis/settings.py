@@ -128,3 +128,4 @@ ALLOWED_HOSTS = ["*"]
 DEBUG = True
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
