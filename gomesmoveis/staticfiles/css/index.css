@@ -1,0 +1,569 @@
+
+/* aqui que fica a imagem */
+
+.container-img{
+    width: 100%;
+    height: 600px;
+
+    background-image: url("/static/images/index_image.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    position: relative; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*background: rgba(0, 0, 0, 0.5);*/
+}
+.container-img::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: rgba(0,0,0,0.5);
+}
+
+/* container para organizar dentro da img */
+.container-hero{
+    width: 90%;
+    height: 338px;
+
+    margin: auto;
+    padding: 16px;
+    
+    line-height: 1.6;
+    z-index: 1;
+}
+.container-hero h1{
+    color: white;
+    font-size: 60px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+.container-hero p{
+    color: white;
+    font-size: 20px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* container do botao  */
+.container-btn{
+    width: 100%;
+    height: 48px;
+    gap: 20px;
+    display: flex;
+}
+.container-btn button{
+    border: none;
+    transition: transform 0.3s ease;
+}
+.container-btn button:hover{
+    border: none;
+    transform: scale(1.05);
+}
+.comprar-cadeiras-btn{
+    width: 215px;
+    height: 100%;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+    font-size: 17px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+
+    background-color: #D32F2F;
+}
+.ver-mesas-btn{
+    width: 150px;
+    height: 100%;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #D32F2F;
+    font-size: 17px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+
+    background-color: white;
+}
+
+/* contanier dos botoes de categoria */
+.container-catergoria{
+    width: 100%;
+    height: 550px;
+
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.container-hero-categoria{
+    width: 90%;
+    height: 450px;
+
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-direction: column;
+    padding: 16px
+}
+.container-hero-categoria h2{
+    display: flex;
+    justify-content: center;
+    color: #4A4A4A;
+    font-size: 40px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+}
+
+.categorias{
+    width: 100%;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    gap: 20px;
+}
+
+.categorias button{
+    width: 225px;
+    height: 100%;
+    border-radius: 20px;
+    border: none;
+
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    padding: 30px;
+
+    color: white;
+    font-size: 20px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+
+
+    position: relative;
+    overflow: hidden;
+}
+
+.categorias button::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+}
+
+.categorias button p{
+    z-index: 1;
+}
+
+.categorias button:hover{
+    transform: scale(1.05);
+}
+
+
+.executivo{
+    background-image: url("/static/images/executiva.jpg");
+}
+.gamer{
+    background-image: url("/static/images/gamer.jpg");
+}
+.ergonomica{
+    background-image: url("/static/images/ergonomico.jpg");
+}
+.escritorio{
+    background-image: url("/static/images/escritorio.jpg");
+}
+.home-office{
+    background-image: url("/static/images/home_office.jpg");
+}
+
+
+/* destaque */
+.container-destaque{
+    width: 100%;
+    height: 100%px;
+    padding: 80px;
+}
+
+.container-hero-destaque{
+    width: 100%;
+    height: 100%;
+}
+/* text titulo */
+.produto-destaque{
+    width: 100%;
+}
+.produto-destaque h3{
+    display: flex;
+    justify-content: center;
+    color: #4A4A4A;
+    font-size: 40px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+
+    margin-bottom: 30px;
+}
+/* paragrafo */
+.container-txt-destaque{
+    width: 100%;
+}
+.container-txt-destaque p{
+    display: flex;
+    justify-content: center;
+    color: #4A4A4A;
+    font-size: 20px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+
+    margin-bottom: 30px;
+}
+
+/* PRODUTOS EM DESTAQUE*/
+.container-produto{
+    width: 100%;
+    height: 100%;
+    padding: 16px;
+    gap: 30px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(100px, 370px));
+    justify-content: center;
+    
+}
+
+/* div do produto */
+.produto{
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.5);
+    transition: transform 0.5s ease;
+    background-color: white;
+
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-decoration:none;
+    transition: transform 0.5s ease;
+}
+.produto:hover{
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transform: translateY(-10px);
+    
+}
+.img-container{
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+}
+.img-produto{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    cursor: pointer;
+    transition: transform 0.5s ease;
+}
+
+.img-produto:hover{
+    transform: scale(1.05);
+}
+
+.paragrafo-produto{
+    width: 100%;
+    height: 30%;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.paragrafo-produto p{
+    color: #4A4A4A;
+    font-size: 17px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+}
+
+
+
+/* VISAO */
+
+.container-visao{
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+    gap: 30px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-descricao-visao{
+    width: 50%;
+    height: 600px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.sobre{
+    width: 100%;
+    margin-bottom: 30px;
+}
+.sobre h4{
+    color: #4A4A4A;
+    font-size: 40px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+}
+.visao{
+    width: 100%;
+    border-bottom: 1px solid #9c9c9c;
+}
+.visao p{
+    color: #4A4A4A;
+    font-size: 20px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+}
+.infos-visao{
+    width: 100%;
+    display: flex;
+    padding: 35px;
+    gap: 30px;
+}
+.infos-visao div{
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.anos h1{
+    color: #D32F2F;
+    font-size: 40px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+}
+.clientes h1{
+    color: #D32F2F;
+    font-size: 40px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+}
+.avaliacao h1{
+    color: #D32F2F;
+    font-size: 40px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+}
+
+.anos p{
+    color: #4A4A4A;
+    font-size: 15px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+}
+.clientes p{
+    color: #4A4A4A;
+    font-size: 15px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+}
+.avaliacao p{
+    color: #4A4A4A;
+    font-size: 15px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+}
+
+
+/* imagem da parte da visao*/
+
+.container-img-visao{
+    width: 50%;
+    height: 600px;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.img-visao{
+    width: 90%;
+    overflow: hidden;
+    border-radius: 30px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.5s ease;
+}
+.img-visao:hover{
+    transform: scale(1.02);
+}
+.img-visao img{
+    width: 100%;
+    height: auto;
+}
+
+/* Footters */
+
+.footer{
+    width: 100%;
+
+    background-color: #4A4A4A;
+}
+
+.container-footer{
+    width: 100%;
+    display: flex;
+    gap: 30px;
+    padding: 40px;  
+    
+    border-bottom: 1px solid #9c9c9c;
+}
+
+.Atendimento-footer{
+    width: 100%;
+    
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+.Categorias-footer{
+    width: 100%;
+
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+.Redes-Sociais-footer{
+    width: 100%;
+
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.container-footer div h1{
+    color: white;
+    font-size: 20px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+
+    margin-bottom: 15px;
+}
+.container-footer div p{
+    color: #cbcbcb;
+    font-size: 15px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+}
+
+.icon-footer{
+    width: 100%;
+    padding: 0px;
+    display: flex;
+    gap: 10px;
+}
+
+.instagram{
+    font-size: 24px;
+    color: #ffffff;
+    transition: 0.3s;
+}
+
+.instagram:hover{
+    color: #D32F2F;
+}
+
+.facebook{
+    font-size: 24px;
+    color: #ffffff;
+    transition: 0.3s;
+}
+.facebook:hover{
+    color: #D32F2F;
+}
+
+.mov{
+    list-style:none;
+}
+.mov li{
+    margin-bottom: 10px;
+}
+.mov li a{
+    color: #cbcbcb;
+    font-size: 15px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    text-decoration:none;
+}
+
+/* direitos */
+
+.container-direitos{
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    padding: 40px;
+}
+
+.container-direitos h1{
+    color: #D32F2F;
+    font-size: 20px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    text-decoration:none;
+}
+
+.container-direitos p{
+    margin-left: auto;
+
+    color: #cbcbcb;
+    font-size: 15px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    text-decoration:none;
+}
+
+.feitopor{
+    background-color: transparent;
+    border: none;
+
+    color: #cbcbcb;
+    font-size: 15px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    text-decoration:none;
+    
+    cursor: pointer;
+}
+.feitopor:hover{
+    color: #D32F2F;
+}

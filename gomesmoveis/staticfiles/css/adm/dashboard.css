@@ -1,0 +1,19 @@
+.container-dashboard{
+    display: flex;
+}
+
+.BEM-VINDO{
+    width: 100%;
+    height: 100px;
+    padding: 20px;
+
+    display: flex;
+    align-items: center;
+}
+.BEM-VINDO h1{
+    color: #4A4A4A;
+    font-size: 35px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    text-decoration:none;
+}
