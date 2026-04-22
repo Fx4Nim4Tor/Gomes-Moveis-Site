@@ -128,4 +128,18 @@
         </p>
     </div>
 </div>
+
+<script>
+    const btnToggle = document.getElementById('btn-toggle-filtro');
+    const painelFiltro = document.getElementById('painel-filtro');
+ 
+    if (btnToggle && painelFiltro) {
+        btnToggle.addEventListener('click', function () {
+            painelFiltro.classList.toggle('aberto');
+            btnToggle.textContent = painelFiltro.classList.contains('aberto')
+                ? '✕ Fechar Filtros'
+                : '☰ Filtros';
+        });
+    }
+</script>
 {% endblock %}

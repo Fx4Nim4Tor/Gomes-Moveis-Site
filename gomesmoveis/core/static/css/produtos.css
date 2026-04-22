@@ -184,24 +184,6 @@
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .footer{
     width: 100%;
 
@@ -339,3 +321,121 @@
 }
 
 
+/* =============================================
+   RESPONSIVO MOBILE — apenas adições abaixo
+   ============================================= */
+
+/* Botão para abrir/fechar filtro no mobile (oculto no desktop) */
+.btn-toggle-filtro {
+    display: none;
+}
+
+@media (max-width: 768px) {
+
+    /* --- Botão toggle filtro --- */
+    .btn-toggle-filtro {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 16px 16px 0 16px;
+        padding: 10px 20px;
+        background-color: #D32F2F;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        font-size: 15px;
+        font-family: "Poppins", sans-serif;
+        font-weight: 600;
+        cursor: pointer;
+        width: calc(100% - 32px);
+        justify-content: center;
+    }
+
+    /* --- Layout principal vira coluna --- */
+    .container {
+        flex-direction: column;
+        padding: 0;
+        gap: 0;
+    }
+
+    /* --- Filtro ocupa largura total e começa fechado --- */
+    .filtro {
+        position: static;
+        margin: 0;
+        margin-top: 0;
+        padding: 20px;
+        border-radius: 0 0 20px 20px;
+        width: 100%;
+        box-sizing: border-box;
+        display: none; /* começa escondido, JS alterna */
+    }
+
+    .filtro.aberto {
+        display: block;
+    }
+
+    .filtro h1 {
+        font-size: 20px;
+    }
+
+    .container-nome-categoria {
+        width: 100%;
+    }
+
+    .btn-filtrar {
+        width: 100%;
+    }
+
+    /* --- Grid de produtos: 2 colunas no mobile --- */
+    .container-produtos {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        padding: 10px;
+    }
+
+    /* --- Imagem menor para caber em tela pequena --- */
+    .img-container {
+        height: 200px;
+    }
+
+    .paragrafo-produto p {
+        font-size: 14px;
+        text-align: center;
+    }
+
+    /* --- container-itens sem margin excessiva --- */
+    .container-itens {
+        margin-top: 16px;
+        padding: 10px;
+    }
+
+    /* --- Footer em coluna --- */
+    .container-footer {
+        flex-direction: column;
+        gap: 20px;
+        padding: 24px;
+    }
+
+    /* --- Direitos empilhados --- */
+    .container-direitos {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 24px;
+    }
+
+    .container-direitos p {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 400px) {
+    /* --- Telas muito pequenas: 1 coluna --- */
+    .container-produtos {
+        grid-template-columns: 1fr;
+    }
+
+    .img-container {
+        height: 260px;
+    }
+}
