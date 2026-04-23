@@ -42,3 +42,8 @@ function fecharAlerta(){
 function abrirAlerta(){
     document.getElementsByClassName("alerta")[0].style.display = "flex";
 }
+
+
+document.getElementsByClassName("feitopor")[0].addEventListener("click", function(){
+    window.location.href = this.dataset.url;
+});

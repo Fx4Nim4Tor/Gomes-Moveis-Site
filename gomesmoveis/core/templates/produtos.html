@@ -128,33 +128,13 @@
             Gomes Móveis
         </h1>
         <p>
-            © 2026 Gomes Móveis. Todos os direitos reservados. <br>
+            © Gomes Móveis. Todos os direitos reservados. <br><br>
+            São Miguel do Oeste e Região. <br><br>
             <button class="feitopor" data-url="https://www.instagram.com/matheus.lllopes/" >Feito por piixel.</button>
         </p>
     </div>
 </div>
 
-<script>
-    const btnAbrir = document.getElementById('btn-abrir-filtro');
-    const btnFechar = document.getElementById('btn-fechar-filtro');
-    const overlay = document.getElementById('filtro-overlay');
-    const painel = document.getElementById('painel-filtro');
 
-    function abrirFiltro() {
-        painel.classList.add('aberto');
-        overlay.classList.add('aberto');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function fecharFiltro() {
-        painel.classList.remove('aberto');
-        overlay.classList.remove('aberto');
-        document.body.style.overflow = '';
-    }
-
-    btnAbrir.addEventListener('click', abrirFiltro);
-    btnFechar.addEventListener('click', fecharFiltro);
-    overlay.addEventListener('click', fecharFiltro);
-</script>
 
 {% endblock %}
