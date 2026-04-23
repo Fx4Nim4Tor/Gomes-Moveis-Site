@@ -367,6 +367,9 @@
         height: 70px;
     }
 
+    .logo-header {
+    font-size: 12px;
+    }
     .container-header {
         padding: 0 16px;
         gap: 12px;

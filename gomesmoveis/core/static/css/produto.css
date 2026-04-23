@@ -454,6 +454,7 @@
 
 
 
+
 /* footer */
 .footer{
     width: 100%;
@@ -573,4 +574,188 @@
     font-family: "Poppins", sans-serif;
     font-weight: 500;
     text-decoration:none;
+}
+
+
+/* =============================================
+   RESPONSIVO MOBILE
+   ============================================= */
+
+@media (max-width: 768px) {
+
+    /* breadcrumb */
+    .move {
+        padding: 12px 16px;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+    .move a,
+    .move p {
+        font-size: 13px;
+    }
+
+    /* container geral */
+    .container-produto {
+        padding: 16px;
+    }
+
+    /* principal: empilha verticalmente */
+    .container-produto-principal {
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+        border-radius: 20px;
+    }
+
+    /* imagens */
+    .img-produto {
+        width: 100%;
+    }
+
+    .img-1-produto {
+        height: 300px;
+        border-radius: 20px;
+        margin-bottom: 12px;
+    }
+
+    .mini-img-produto {
+        height: auto;
+        gap: 10px;
+    }
+
+    .miniatura {
+        border-radius: 15px;
+        max-height: 100px;
+        object-fit: cover;
+    }
+
+    /* descricao */
+    .container-descricao-produto {
+        width: 100%;
+        height: auto;
+        padding: 20px;
+        border-radius: 20px;
+    }
+
+    .nome-produto {
+        margin-bottom: 16px;
+    }
+
+    .nome-produto h1 {
+        font-size: 22px;
+    }
+
+    .descricao-produto {
+        margin-bottom: 20px;
+    }
+
+    .descricao-produto h1 {
+        font-size: 17px;
+    }
+
+    .descricao-produto p {
+        font-size: 15px;
+    }
+
+    /* botoes comprar/compartilhar */
+    .container-whats {
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 24px;
+    }
+
+    .compartilhar {
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    .btn-whats {
+        padding: 14px;
+        border-radius: 20px;
+    }
+
+    .whats {
+        font-size: 16px;
+    }
+
+    /* alerta modal */
+    .alerta-conteudo {
+        width: 90%;
+        padding: 24px 20px;
+    }
+
+    .alerta-conteudo h2 {
+        font-size: 22px;
+        text-align: center;
+    }
+
+    .alerta-conteudo p {
+        font-size: 15px;
+        text-align: center;
+    }
+
+    .container-btn-alerta {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .smo,
+    .pinhalzinho {
+        width: 100%;
+        padding: 14px;
+        border-radius: 20px;
+    }
+
+    .smo p,
+    .pinhalzinho p {
+        font-size: 16px;
+    }
+
+    /* relacionados */
+    .relacionado {
+        margin-top: 60px;
+        padding: 12px;
+    }
+
+    .relacionado h1 {
+        font-size: 22px;
+    }
+
+    .container-produtos-relacionados {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        padding: 8px;
+    }
+
+    .img-container {
+        height: 180px;
+    }
+
+    .paragrafo-produto p {
+        font-size: 14px;
+    }
+
+    /* footer */
+    .container-footer {
+        flex-direction: column;
+        gap: 24px;
+        padding: 24px 20px;
+    }
+
+    .container-direitos {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 20px;
+    }
+
+    .container-direitos p {
+        margin-left: 0;
+        font-size: 13px;
+    }
+
+    .container-direitos h1 {
+        font-size: 18px;
+    }
 }

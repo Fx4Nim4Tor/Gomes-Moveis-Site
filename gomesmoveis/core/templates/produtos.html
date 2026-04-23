@@ -17,11 +17,16 @@
     <a href="{% url 'produtos' %}">produtos</a>
 </div>
 
+<!-- overlay e botão filtro — só usados no mobile -->
+<div class="filtro-overlay" id="filtro-overlay"></div>
+<button class="btn-abrir-filtro" id="btn-abrir-filtro">☰ Filtros</button>
 
-<!-- aqui ta puxando todos os produtos mas tem que mudar pra puxar nao todos de uma vez se nao vai de f o site -->
- <div class="container">
+<div class="container">
     <!-- define os filtros -->
-    <div class="filtro">
+    <div class="filtro" id="painel-filtro">
+
+        <button class="btn-fechar-filtro" id="btn-fechar-filtro">✕</button>
+
         <h1>Filtros</h1>
         
         <form method="get">
@@ -130,16 +135,26 @@
 </div>
 
 <script>
-    const btnToggle = document.getElementById('btn-toggle-filtro');
-    const painelFiltro = document.getElementById('painel-filtro');
- 
-    if (btnToggle && painelFiltro) {
-        btnToggle.addEventListener('click', function () {
-            painelFiltro.classList.toggle('aberto');
-            btnToggle.textContent = painelFiltro.classList.contains('aberto')
-                ? '✕ Fechar Filtros'
-                : '☰ Filtros';
-        });
+    const btnAbrir = document.getElementById('btn-abrir-filtro');
+    const btnFechar = document.getElementById('btn-fechar-filtro');
+    const overlay = document.getElementById('filtro-overlay');
+    const painel = document.getElementById('painel-filtro');
+
+    function abrirFiltro() {
+        painel.classList.add('aberto');
+        overlay.classList.add('aberto');
+        document.body.style.overflow = 'hidden';
     }
+
+    function fecharFiltro() {
+        painel.classList.remove('aberto');
+        overlay.classList.remove('aberto');
+        document.body.style.overflow = '';
+    }
+
+    btnAbrir.addEventListener('click', abrirFiltro);
+    btnFechar.addEventListener('click', fecharFiltro);
+    overlay.addEventListener('click', fecharFiltro);
 </script>
+
 {% endblock %}
