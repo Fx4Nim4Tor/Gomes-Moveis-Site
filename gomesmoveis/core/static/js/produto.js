@@ -43,6 +43,27 @@ function abrirAlerta(){
     document.getElementsByClassName("alerta")[0].style.display = "flex";
 }
 
+function fecharAlertaComp(){
+    document.getElementById("alertacomp").style.display = "none";
+}
+// function abrirAlertaComp(){
+//     document.getElementsByClassName("alertacomp")[0].style.display = "flex";
+// }
+
+function abrirAlertaComp(){
+    document.getElementById("link-compartilhar").value = window.location.href;
+    document.getElementById("alertacomp").style.display = "flex";
+}
+
+function copiarLink(){
+    const input = document.getElementById("link-compartilhar");
+    navigator.clipboard.writeText(input.value).then(() => {
+        const btn = document.querySelector(".btn-copiar");
+        btn.textContent = "Copiado!";
+        setTimeout(() => btn.textContent = "Copiar", 2000);
+    });
+}
+
 
 document.getElementsByClassName("feitopor")[0].addEventListener("click", function(){
     window.location.href = this.dataset.url;

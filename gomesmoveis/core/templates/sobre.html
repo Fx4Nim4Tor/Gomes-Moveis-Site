@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/sobre.css' %}">
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/sobre.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container-sobre">
+    <div class="container-txt-sobre">
+        <h1>
+            Sobre Nós
+        </h1>
+        <br>
+        <p>
+            A <strong>Gomes Móveis</strong> é uma empresa tradicional de <strong>São Miguel do Oeste</strong>, com décadas de história e compromisso com a qualidade. Atuando desde <strong>1974</strong>, construímos nossa trajetória oferecendo soluções completas em móveis, equipamentos e itens para escritório, sempre com foco nas necessidades dos nossos clientes.
+        </p>
+        <br>
+        <p>
+            Localizada no coração de <strong>São Miguel do Oeste</strong> e coração de <strong>Pinhalzinho</strong>, cidades referência no extremo oeste catarinense, buscamos unir experiência e inovação para entregar produtos que aliam funcionalidade, durabilidade e bom gosto.
+        </p>
+        <br>
+        <p>
+            Ao longo dos anos, nos consolidamos como uma empresa de confiança, oferecendo não apenas <strong>móveis</strong>, mas também <strong>soluções</strong> completas que facilitam o dia a dia de empresas e residências. Nosso compromisso vai além da venda: prezamos pelo bom atendimento, pela <strong>qualidade</strong> dos produtos e pela satisfação de cada cliente.
+        </p>
+        <br>
+        <h2 class="txt-sobre-dif">
+            Gomes Móveis — tradição, confiança e qualidade para o seu espaço.
+        </h2>
+    </div>
+    <div class="container-img-sobre">
+        <img src="/static/images/img-sobre.png">
+    </div>
+</div>
+{% endblock %}

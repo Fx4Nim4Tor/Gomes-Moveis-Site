@@ -52,7 +52,7 @@
     color: white;
 }
 .subit-form-categoria-adm{
-    width: 150px;
+    width: 40%;
     height: 50px;
     border-radius: 10px;
     border: 1px solid #D32F2F;
@@ -287,8 +287,10 @@
 }
 
 .input-form-produto:hover {
-    transform: scale(1.02);
+    border: 1px solid white;
 }
+
+
 
 .input-form-produto::placeholder {
     color: rgba(255,255,255,0.7);

@@ -8,7 +8,7 @@
             <li><a href="{% url 'produtos' %}">Produtos</a></li>
             <li><a href="{% url 'produtos' %}?tipo=mesa">Mesas</a></li>
             <li><a href="{% url 'produtos' %}?tipo=cadeiras">Cadeiras</a></li>
-            <li><a href="{% url 'produtos' %}?categoria=executiva">Executivo</a></li>
+            <li><a href="{% url 'sobre' %}">Sobre Nós</a></li>
         </ul>
         <li class="li-busca-header">
             <input type="text"
@@ -61,8 +61,8 @@
             <button data-url="{% url 'produtos' %}?tipo=cadeiras">
                 Cadeiras
             </button>
-            <button data-url="{% url 'produtos' %}?categoria=executiva">
-                Executivo
+            <button data-url="{% url 'sobre' %}">
+                Sobre Nós
             </button>
         </ul>
     </div>

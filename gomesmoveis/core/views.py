@@ -152,6 +152,10 @@ def buscar(request):
 
 
 
+def sobre(request):
+    return render(request, "sobre.html")
+
+
 
 
 # ADEMIRO TELAS

@@ -42,7 +42,7 @@
                 <p>{{ produto.descricao|linebreaksbr }}</p>
             </div>
             <div class="container-whats">
-                <div class="compartilhar">
+                <div class="compartilhar" onclick="abrirAlertaComp()">
                     Compartilhar
                 </div>
                 <button class="btn-whats" onclick="abrirAlerta()">
@@ -88,6 +88,17 @@
     </div>
 </div>
 
+<div id="alertacomp" class="alertacomp">
+    <div class="alerta-conteudo">
+        <span class="fechar" onclick="fecharAlertaComp()">x</span>
+        <h2>Compartilhar</h2>
+        <p class="descricao-alerta">Copie o link abaixo</p>
+        <div class="container-link">
+            <input type="text" id="link-compartilhar" readonly>
+            <button class="btn-copiar" onclick="copiarLink()">Copiar</button>
+        </div>
+    </div>
+</div>
 
 
 

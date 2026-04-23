@@ -1,4 +1,27 @@
 document.addEventListener('DOMContentLoaded', function () {
+    const btnAbrir = document.getElementById('btn-abrir-filtro');
+    const btnFechar = document.getElementById('btn-fechar-filtro');
+    const overlay = document.getElementById('filtro-overlay');
+    const painel = document.getElementById('painel-filtro');
+
+    function abrirFiltro() {
+        painel.classList.add('aberto');
+        overlay.classList.add('aberto');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function fecharFiltro() {
+        painel.classList.remove('aberto');
+        overlay.classList.remove('aberto');
+        document.body.style.overflow = '';
+    }
+
+    btnAbrir.addEventListener('click', abrirFiltro);
+    btnFechar.addEventListener('click', fecharFiltro);
+    overlay.addEventListener('click', fecharFiltro);
+});
+
+document.addEventListener('DOMContentLoaded', function () {
     const listaProdutos = document.getElementById('lista-produtos');
     const containerBotao = document.getElementById('container-carregar-mais');
 
@@ -41,6 +64,8 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+
 
 document.getElementsByClassName("feitopor")[0].addEventListener("click", function(){
     window.location.href = this.dataset.url;
