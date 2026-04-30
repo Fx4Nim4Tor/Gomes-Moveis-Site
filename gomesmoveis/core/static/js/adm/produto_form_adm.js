@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const nome = nomeInput.value || 'Nome do Produto';
         const desc = descricaoInput.value || 'Descrição do produto aparecerá aqui.';
         previewNome.textContent = nome;
-        // Converte \n em <br> para o preview
         previewDescricao.innerHTML = desc
             .replace(/&/g, '&amp;')
             .replace(/</g, '&lt;')
@@ -148,9 +147,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     loadedCount++;
 
                     if (loadedCount === accumulatedFiles.length) {
-                        previewImgPrincipal.src = imageUrls[0] || '{% static "images/img-visao.jpg" %}';
+                        previewImgPrincipal.src = imageUrls[0] || imgPlaceholder;
                         miniaturas.forEach((img, miniIndex) => {
-                            img.src = imageUrls[miniIndex] || '{% static "images/img-visao.jpg" %}';
+                            img.src = imageUrls[miniIndex] || imgPlaceholder;
                         });
                     }
                 };
@@ -160,12 +159,12 @@ document.addEventListener('DOMContentLoaded', function() {
             renderSelectedFiles(existingCount, totalAllowed, accumulatedFiles);
         } else if (existingCount > 0) {
             lista.innerHTML = `<p style="margin-top: 0; font-size: 12px; color: #666;">Imagens atuais não removidas: ${existingCount}/${totalAllowed}. Você pode adicionar até ${totalAllowed - existingCount} novas.</p>`;
-            previewImgPrincipal.src = '{% static "images/img-visao.jpg" %}';
-            miniaturas.forEach(img => img.src = '{% static "images/img-visao.jpg" %}');
+            previewImgPrincipal.src = imgPlaceholder;
+            miniaturas.forEach(img => img.src = imgPlaceholder);
         } else {
             lista.innerHTML = '<p style="margin-top: 0; font-size: 12px; color: #666;">Nenhuma imagem selecionada.</p>';
-            previewImgPrincipal.src = '{% static "images/img-visao.jpg" %}';
-            miniaturas.forEach(img => img.src = '{% static "images/img-visao.jpg" %}');
+            previewImgPrincipal.src = imgPlaceholder;
+            miniaturas.forEach(img => img.src = imgPlaceholder);
         }
     }
 
@@ -179,7 +178,6 @@ document.addEventListener('DOMContentLoaded', function() {
         checkbox.addEventListener('change', updateImagePreview);
     });
 
-    // Initial update
     updatePreview();
     updateImagePreview();
 });

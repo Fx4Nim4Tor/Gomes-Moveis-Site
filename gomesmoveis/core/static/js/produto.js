@@ -19,23 +19,8 @@ document.addEventListener("DOMContentLoaded", function() {
     if (fecha_alerta) {
         fecha_alerta.addEventListener("click", fecharAlerta);
     }
-
-    const smoBtn = document.querySelector(".smo");
-    if (smoBtn) {
-        smoBtn.addEventListener("click", function() {
-            window.location.href = "";
-        });
-    }
-
-    const pinhalzinhoBtn = document.querySelector(".pinhalzinho");
-    if (pinhalzinhoBtn) {
-        pinhalzinhoBtn.addEventListener("click", function() {
-            window.location.href = "";
-        });
-    }
 });
 
-// funcao que os botoes que abre e fecha o alerta puxa 
 function fecharAlerta(){
     document.getElementById("alerta").style.display = "none";
 }
@@ -46,9 +31,6 @@ function abrirAlerta(){
 function fecharAlertaComp(){
     document.getElementById("alertacomp").style.display = "none";
 }
-// function abrirAlertaComp(){
-//     document.getElementsByClassName("alertacomp")[0].style.display = "flex";
-// }
 
 function abrirAlertaComp(){
     document.getElementById("link-compartilhar").value = window.location.href;
@@ -64,15 +46,26 @@ function copiarLink(){
     });
 }
 
-
 document.getElementsByClassName("feitopor")[0].addEventListener("click", function(){
     window.location.href = this.dataset.url;
 });
 
-document.querySelectorAll('.img-1-produto img').forEach(img => {
+document.querySelectorAll('img').forEach(img => {
     if (img.complete) {
         img.classList.add('carregada');
     } else {
         img.addEventListener('load', () => img.classList.add('carregada'));
     }
+});
+
+document.querySelectorAll(".smo").forEach(function(btn) {
+    btn.addEventListener("click", function() {
+        window.location.href = this.dataset.url;
+    });
+});
+
+document.querySelectorAll(".pinhalzinho").forEach(function(btn) {
+    btn.addEventListener("click", function() {
+        window.location.href = this.dataset.url;
+    });
 });
