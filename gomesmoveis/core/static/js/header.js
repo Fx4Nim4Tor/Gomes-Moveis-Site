@@ -5,13 +5,6 @@ botao.addEventListener("click",abrirAlerta)
 const fecha_alerta = document.getElementsByClassName("fechar")[0];
 fecha_alerta.addEventListener("click",fecharAlerta)
 
-// direciona botoes para whats dependendo de onde mora
-document.getElementsByClassName("smo")[0].addEventListener("click", function(){
-    window.location.href = "";
-});
-document.getElementsByClassName("pinhalzinho")[0].addEventListener("click", function(){
-    window.location.href = "";
-});
 
 
 // funcao que os botoes que abre e fecha o alerta puxa 
@@ -104,7 +97,7 @@ document.addEventListener('click', function (e) {
 });
 
 
-document.querySelectorAll('.menu-header-overlay button').forEach(btn => {
+document.querySelectorAll('.menu-header-overlay button:not(.whatsmobile)').forEach(btn => {
     btn.addEventListener('click', function() {
         window.location.href = this.dataset.url;
     });
@@ -118,3 +111,9 @@ document.getElementsByClassName("smo")[0].addEventListener("click", function(){
 document.getElementsByClassName("pinhalzinho")[0].addEventListener("click", function(){
     window.location.href = this.dataset.url;
 });
+
+
+const botaoMobile = document.getElementsByClassName("whatsmobile")[0];
+if (botaoMobile) {
+    botaoMobile.addEventListener("click", abrirAlerta);
+}
