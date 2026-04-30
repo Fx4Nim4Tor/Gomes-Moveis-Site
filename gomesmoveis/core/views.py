@@ -14,10 +14,6 @@ ALLOWED_IMAGE_EXTENSIONS = {'jpg', 'jpeg', 'png', 'gif', 'webp', 'svg'}
 
 def validar_imagens_upload(imagens):
     for imagem in imagens:
-        content_type = getattr(imagem, 'content_type', '')
-        if not content_type.startswith('image/'):
-            return 'Formato de imagem inválido. Envie apenas arquivos de imagem.'
-
         if '.' not in imagem.name:
             return 'Formato de imagem inválido. Envie um arquivo de imagem com extensão.'
 

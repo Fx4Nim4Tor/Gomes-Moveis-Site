@@ -59,8 +59,14 @@
 
 .img-1-produto img{
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.img-1-produto img.carregada{
+    opacity: 1;
 }
 
 /*mini imagem*/

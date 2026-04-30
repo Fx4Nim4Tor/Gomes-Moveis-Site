@@ -12,7 +12,7 @@
 
 {% block content %}
 <div class="container-img">
-    <div class="container-hero">
+    <div class="container-hero animar">
         <h1>Conforto e <br> produtividade para o <br> seu escritório</h1>
         <p>Móveis ergonômicos que transformam seu espaço de trabalho.</p>
         <div class="container-btn">
@@ -26,9 +26,9 @@
     </div>
 </div>
 <div class="container-catergoria">
-    <div class="container-hero-categoria">
+    <div class="container-hero-categoria animar">
         <h2>Categorias Principais</h2>
-        <div class="categorias">
+        <div class="categorias ">
             <button class="executivo" data-url="{% url 'produtos' %}?categoria=executiva">
                 <p>Cadeiras Executivas</p>
             </button>
@@ -49,7 +49,7 @@
 </div>
 
 <div class="container-destaque">
-    <div class="container-hero-destaque">
+    <div class="container-hero-destaque animar">
         <div class="produto-destaque">
             <h3>Produtos em Destaque</h3>
         </div>
@@ -60,7 +60,7 @@
             {% for produto in produtos_destaque %}
             <a href="{% url 'produto' produto.slug %}" class="produto">
                 <div class="img-container">
-                    <img class="img-produto" src="{{ produto.imagens.first.imagem.url }}">
+                    <img class="img-produto" src="{{ produto.imagens.first.imagem.url }}" loading="lazy">
                 </div>
                 <div class="paragrafo-produto">
                     <p>{{ produto.nome }}</p>
@@ -73,7 +73,7 @@
 
 <div class="container-visao">
     <div class="container-descricao-visao">
-        <div class="descricao-visao">
+        <div class="descricao-visao animar">
             <div class="sobre">
                 <h4>Sobre a Gomes Móveis</h4>
             </div>
@@ -93,7 +93,7 @@
                 <br>
             </div>
         </div>
-        <div class="infos-visao">
+        <div class="infos-visao animar">
             <div class="anos">
                 <h1>
                    50+ 
@@ -122,13 +122,13 @@
     </div>
 
     <div class="container-img-visao">
-        <div class="img-visao">
+        <div class="img-visao animar">
             <img src="/static/images/img-visao.jpg">
         </div>
     </div>
 </div>
 
-
+<!-- footer -->
 <div class="footer">
     <br><br><br><br><br>
     <div class="container-footer">
@@ -161,7 +161,7 @@
             
         </div>
     </div>
-    <div class="container-direitos">
+    <div class="container-direitos ">
         <h1>
             Gomes Móveis
         </h1>

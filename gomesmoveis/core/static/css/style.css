@@ -13,3 +13,23 @@ body {
 img, video, iframe {
     max-width: 100%;
 }
+
+.animar {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.animar.visivel {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+img {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+img.carregada {
+    opacity: 1;
+}

@@ -71,10 +71,6 @@ ALLOWED_IMAGE_EXTENSIONS = ('jpg', 'jpeg', 'png', 'gif', 'webp', 'svg')
 
 
 def validate_image_file(value):
-    content_type = getattr(value, 'content_type', '')
-    if not content_type.startswith('image/'):
-        raise ValidationError('Formato de imagem inválido. Envie apenas arquivos de imagem.')
-
     if '.' not in value.name:
         raise ValidationError('Formato de imagem inválido. Envie um arquivo de imagem com extensão.')
 
@@ -116,8 +112,10 @@ class ProdutoImagem(models.Model):
         super().save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
-        if self.imagem and os.path.isfile(self.imagem.path):
-            os.remove(self.imagem.path)
+        try:
+            self.imagem.delete(save=False)
+        except Exception:
+            pass
         super().delete(*args, **kwargs)
 
     def __str__(self):

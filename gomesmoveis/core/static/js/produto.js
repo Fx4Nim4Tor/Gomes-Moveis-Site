@@ -68,3 +68,11 @@ function copiarLink(){
 document.getElementsByClassName("feitopor")[0].addEventListener("click", function(){
     window.location.href = this.dataset.url;
 });
+
+document.querySelectorAll('.img-1-produto img').forEach(img => {
+    if (img.complete) {
+        img.classList.add('carregada');
+    } else {
+        img.addEventListener('load', () => img.classList.add('carregada'));
+    }
+});

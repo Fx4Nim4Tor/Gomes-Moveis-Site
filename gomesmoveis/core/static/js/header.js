@@ -109,3 +109,12 @@ document.querySelectorAll('.menu-header-overlay button').forEach(btn => {
         window.location.href = this.dataset.url;
     });
 });
+
+
+// botao whats
+document.getElementsByClassName("smo")[0].addEventListener("click", function(){
+    window.location.href = this.dataset.url;
+});
+document.getElementsByClassName("pinhalzinho")[0].addEventListener("click", function(){
+    window.location.href = this.dataset.url;
+});

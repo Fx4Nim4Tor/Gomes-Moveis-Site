@@ -24,18 +24,18 @@
 
 <div class="container-produto">
     <div class="container-produto-principal">
-        <div class="img-produto">
+        <div class="img-produto animar">
             <div class="img-1-produto">
-                <img id="img-principal" src="{{ produto.imagens.first.imagem.url }}">
+                <img id="img-principal" src="{{ produto.imagens.first.imagem.url }}" loading="lazy">
             </div>
             <div class="mini-img-produto">
-                <img class="miniatura" src="{{ produto.imagens.all.first.imagem.url }}">
-                <img class="miniatura" src="{{ produto.imagens.all.1.imagem.url }}">
-                <img class="miniatura" src="{{ produto.imagens.all.2.imagem.url }}">
+                <img class="miniatura" src="{{ produto.imagens.all.first.imagem.url }}" loading="lazy">
+                <img class="miniatura" src="{{ produto.imagens.all.1.imagem.url }}" loading="lazy">
+                <img class="miniatura" src="{{ produto.imagens.all.2.imagem.url }}" loading="lazy">
             </div>
         </div>
 
-        <div class="container-descricao-produto">
+        <div class="container-descricao-produto animar">
             <div class="nome-produto">
                 <h1>{{ produto.nome }}</h1>
             </div>
@@ -55,14 +55,14 @@
             </div>
         </div>
     </div>
-    <div class="relacionado">
+    <div class="relacionado animar">
         <h1>Produtos Relacionados</h1>
     </div>
-    <div class="container-produtos-relacionados">
+    <div class="container-produtos-relacionados animar">
         {% for p in produtos_relacionados %}
         <a href="{% url 'produto' p.slug %}">
             <div class="img-container">
-                <img src="{{ p.imagens.first.imagem.url }}">
+                <img src="{{ p.imagens.first.imagem.url }}" loading="lazy">
             </div>
             <div class="paragrafo-produto">
                 <p>{{ p.nome }}</p>
