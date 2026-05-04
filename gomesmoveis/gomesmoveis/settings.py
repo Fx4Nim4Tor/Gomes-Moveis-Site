@@ -107,3 +107,4 @@ AWS_S3_FILE_OVERWRITE = False
 AWS_S3_CUSTOM_DOMAIN = 'mywclasjgelbllnvokxl.storage.supabase.co/storage/v1/object/public/media'
 AWS_QUERYSTRING_AUTH = False
 WHITENOISE_MAX_AGE = 31536000
+CSRF_TRUSTED_ORIGINS = os.environ.get('CSRF_TRUSTED_ORIGINS', '').split(',')

@@ -37,10 +37,7 @@ def validar_imagens_upload(imagens):
 
 
 def inicio(request):
-    from core.models import Categoria
-    cats = [("Executiva","executiva"),("Secretária","secretaria"),("Presidente","presidente"),("Presidente Plus","presidente-plus"),("Back System","back-system"),("Gamer","gamer"),("Fixa","fixa"),("Plus Size","plus-size"),("Caixa","caixa"),("Mesas Retas","mesas-retas"),("Mesas em L","mesas-em-l"),("Mesas de Reunião","mesas-de-reuniao"),("Acessórios","acessorios"),("Diretor","diretor")]
-    for nome, slug in cats:
-        Categoria.objects.get_or_create(nome=nome, slug=slug)
+    
 
     import time
     t1 = time.time()
