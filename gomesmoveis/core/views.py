@@ -37,6 +37,8 @@ def validar_imagens_upload(imagens):
 
 
 def inicio(request):
+    import time
+    t1 = time.time()
     # Cache de 5 min — produtos destaque não mudam toda hora
     produtos_destaque = cache.get('produtos_destaque')
     if not produtos_destaque:
@@ -47,6 +49,9 @@ def inicio(request):
             .select_related('categoria')
         )
         cache.set('produtos_destaque', produtos_destaque, 60 * 5)
+
+    t2 = time.time()
+    print(f"⏱️ Query levou: {t2-t1:.2f}s")
 
     return render(request, "index.html", {
         "produtos_destaque": produtos_destaque
