@@ -54,12 +54,21 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'gomesmoveis.wsgi.application'
 
+# FIX: conn_max_age=0 para serverless
 DATABASES = {
     'default': dj_database_url.parse(
         os.environ.get('DATABASE_URL'),
-        conn_max_age=600,
+        conn_max_age=0,
         ssl_require=True
     )
+}
+
+# CACHE em memória
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'gomesmoveis-cache',
+    }
 }
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -77,12 +86,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-
-
-
 SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 
-# Supabase Storage
 STORAGES = {
     "default": {
         "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
