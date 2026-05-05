@@ -1,71 +1,102 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const principal = document.getElementById("img-principal");
-    const miniaturas = document.querySelectorAll(".miniatura");
+document.addEventListener('DOMContentLoaded', function () {
+    const btnAbrir = document.getElementById('btn-abrir-filtro');
+    const btnFechar = document.getElementById('btn-fechar-filtro');
+    const overlay = document.getElementById('filtro-overlay');
+    const painel = document.getElementById('painel-filtro');
 
-    if (principal && miniaturas.length) {
-        miniaturas.forEach(img => {
-            img.addEventListener("click", function() {
-                principal.src = this.src;
+    function abrirFiltro() {
+        painel.classList.add('aberto');
+        overlay.classList.add('aberto');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function fecharFiltro() {
+        painel.classList.remove('aberto');
+        overlay.classList.remove('aberto');
+        document.body.style.overflow = '';
+    }
+
+    btnAbrir.addEventListener('click', abrirFiltro);
+    btnFechar.addEventListener('click', fecharFiltro);
+    overlay.addEventListener('click', fecharFiltro);
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const listaProdutos = document.getElementById('lista-produtos');
+    const containerBotao = document.getElementById('container-carregar-mais');
+
+    if (!containerBotao) return;
+
+    const botao = document.getElementById('btn-carregar-mais');
+
+    botao.addEventListener('click', function () {
+        const proximaPagina = botao.dataset.proximaPagina;
+
+        const params = new URLSearchParams(window.location.search);
+        params.set('page', proximaPagina);
+
+        botao.textContent = 'Carregando...';
+        botao.disabled = true;
+
+        fetch(`/produtos/?${params.toString()}`, {
+            headers: { 'x-requested-with': 'XMLHttpRequest' }
+        })
+        .then(res => res.json())
+        .then(data => {
+            // Cria um elemento temporário para parsear o HTML recebido
+            const temp = document.createElement('div');
+            temp.innerHTML = data.html;
+
+            // Pega todos os novos cards
+            const novosCards = Array.from(temp.children);
+
+            // Para cada card, garante que a imagem carregue corretamente antes de exibir
+            novosCards.forEach(card => {
+                const img = card.querySelector('img');
+                if (img) {
+                    // Remove qualquer lazy loading que possa existir
+                    img.removeAttribute('loading');
+
+                    // Se a imagem já está em cache e carregada, força o reflow
+                    if (img.complete && img.naturalHeight !== 0) {
+                        img.style.display = 'none';
+                        img.offsetHeight; // força reflow
+                        img.style.display = '';
+                    } else {
+                        // Se ainda não carregou, aguarda o evento load
+                        img.addEventListener('load', function () {
+                            this.style.display = 'none';
+                            this.offsetHeight; // força reflow
+                            this.style.display = '';
+                        });
+
+                        // Força o browser a buscar a imagem novamente caso o src esteja travado
+                        const src = img.getAttribute('src');
+                        if (src) {
+                            img.setAttribute('src', '');
+                            img.setAttribute('src', src);
+                        }
+                    }
+                }
+
+                listaProdutos.appendChild(card);
             });
+
+            if (data.tem_proxima) {
+                botao.dataset.proximaPagina = data.proxima_pagina;
+                botao.textContent = 'Carregar mais';
+                botao.disabled = false;
+            } else {
+                containerBotao.remove();
+            }
+        })
+        .catch(() => {
+            botao.textContent = 'Erro ao carregar. Tente novamente.';
+            botao.disabled = false;
         });
-    }
-
-    const botao = document.querySelector(".btn-whats");
-    if (botao) {
-        botao.addEventListener("click", abrirAlerta);
-    }
-
-    const fecha_alerta = document.querySelector(".fechar");
-    if (fecha_alerta) {
-        fecha_alerta.addEventListener("click", fecharAlerta);
-    }
+    });
 });
 
-function fecharAlerta(){
-    document.getElementById("alerta").style.display = "none";
-}
-function abrirAlerta(){
-    document.getElementsByClassName("alerta")[0].style.display = "flex";
-}
-
-function fecharAlertaComp(){
-    document.getElementById("alertacomp").style.display = "none";
-}
-
-function abrirAlertaComp(){
-    document.getElementById("link-compartilhar").value = window.location.href;
-    document.getElementById("alertacomp").style.display = "flex";
-}
-
-function copiarLink(){
-    const input = document.getElementById("link-compartilhar");
-    navigator.clipboard.writeText(input.value).then(() => {
-        const btn = document.querySelector(".btn-copiar");
-        btn.textContent = "Copiado!";
-        setTimeout(() => btn.textContent = "Copiar", 2000);
-    });
-}
-
-document.getElementsByClassName("feitopor")[0].addEventListener("click", function(){
+document.getElementsByClassName("feitopor")[0].addEventListener("click", function () {
     window.location.href = this.dataset.url;
-});
-
-document.querySelectorAll('img').forEach(img => {
-    if (img.complete) {
-        img.classList.add('carregada');
-    } else {
-        img.addEventListener('load', () => img.classList.add('carregada'));
-    }
-});
-
-document.querySelectorAll(".smo").forEach(function(btn) {
-    btn.addEventListener("click", function() {
-        window.location.href = this.dataset.url;
-    });
-});
-
-document.querySelectorAll(".pinhalzinho").forEach(function(btn) {
-    btn.addEventListener("click", function() {
-        window.location.href = this.dataset.url;
-    });
 });
