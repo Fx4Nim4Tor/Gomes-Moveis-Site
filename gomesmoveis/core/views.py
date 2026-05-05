@@ -37,17 +37,14 @@ def validar_imagens_upload(imagens):
 
 
 def inicio(request):
-    
-
     import time
     t1 = time.time()
-    # Cache de 5 min — produtos destaque não mudam toda hora
     produtos_destaque = cache.get('produtos_destaque')
     if not produtos_destaque:
         produtos_destaque = list(
             Produto.objects
             .filter(destaque=True)
-            .prefetch_related('imagens')   # FIX: template acessa produto.imagens.first — sem isso = N+1
+            .prefetch_related('imagens')
             .select_related('categoria')
         )
         cache.set('produtos_destaque', produtos_destaque, 60 * 5)
@@ -66,8 +63,6 @@ def produto(request, slug):
         slug=slug
     )
 
-    # FIX: removido order_by("?") que fazia ORDER BY RANDOM() no banco
-    # Agora pega só os IDs (query leve) e embaralha em Python
     ids = list(
         Produto.objects
         .filter(categoria=produto.categoria)
@@ -80,7 +75,7 @@ def produto(request, slug):
     produtos_relacionados = (
         Produto.objects
         .filter(id__in=ids)
-        .prefetch_related('imagens')  # FIX: template acessa p.imagens.first — sem prefetch = N+1
+        .prefetch_related('imagens')
     )
 
     return render(request, "produto.html", {
@@ -90,7 +85,6 @@ def produto(request, slug):
 
 
 def produtos(request):
-    # Cache de categorias — raramente mudam
     categorias = cache.get('categorias')
     if not categorias:
         categorias = list(Categoria.objects.all())
@@ -103,8 +97,6 @@ def produtos(request):
     sem_filtro = not categorias_selecionadas and not tipos_selecionados
 
     if sem_filtro:
-        # FIX: removido CASE WHEN gigante que gerava SQL com centenas de WHENs
-        # Agora pega só IDs (levíssimo), embaralha em Python, depois busca os dados paginados
         if str(page_number) == '1' or 'ordem_produtos' not in request.session:
             ids = list(Produto.objects.values_list('id', flat=True))
             random.shuffle(ids)
@@ -112,22 +104,17 @@ def produtos(request):
 
         ids_ordenados = request.session.get('ordem_produtos', [])
 
-        # Paginação sobre a lista de IDs (sem tocar no banco ainda)
         paginator = Paginator(ids_ordenados, 12)
         pagina = paginator.get_page(page_number)
         ids_pagina = list(pagina.object_list)
 
-        # Busca só os produtos da página atual com prefetch
         produtos_dict = {
             p.id: p for p in Produto.objects
             .filter(id__in=ids_pagina)
             .prefetch_related('imagens')
             .select_related('categoria')
         }
-        # Preserva a ordem aleatória
         object_list_ordenado = [produtos_dict[i] for i in ids_pagina if i in produtos_dict]
-
-        # Recria o objeto de página com os produtos ordenados
         pagina.object_list = object_list_ordenado
         itens = pagina
 
@@ -143,14 +130,13 @@ def produtos(request):
         itens = paginator.get_page(page_number)
 
     if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-        ids_pagina = [p.id for p in itens.object_list]
-        produtos_com_imagens = {
-            p.id: p for p in Produto.objects
-            .filter(id__in=ids_pagina)
-            .prefetch_related('imagens')
-        }
-        itens.object_list = [produtos_com_imagens[p.id] for p in itens.object_list if p.id in produtos_com_imagens]
-        html = render_to_string('partials/cards_produtos.html', {'produtos': itens}, request=request)
+        # FIX: não rebusca os produtos — itens já tem prefetch_related('imagens') feito acima.
+        # Passa object_list diretamente para o partial (lista Python pura, sem overhead de Page).
+        html = render_to_string(
+            'partials/cards_produtos.html',
+            {'produtos': itens.object_list},
+            request=request
+        )
         return JsonResponse({
             'html': html,
             'tem_proxima': itens.has_next(),
@@ -169,7 +155,6 @@ def buscar(request):
     resultados = []
 
     if query:
-        # FIX: prefetch_related evita N+1 (antes chamava p.imagens.first() 2x por produto)
         produtos = (
             Produto.objects
             .filter(nome__icontains=query)
@@ -235,7 +220,7 @@ def adm_categorias(request):
             erro = 'Já existe uma categoria com esse nome.'
         else:
             Categoria.objects.create(nome=nome)
-            cache.delete('categorias')  # invalida cache
+            cache.delete('categorias')
             return redirect('adm_categorias')
 
     return render(request, 'adm/categorias.html', {'categorias': categorias, 'erro': erro, 'acao': 'Criar'})
@@ -253,7 +238,7 @@ def adm_categoria_criar(request):
             erro = 'Já existe uma categoria com esse nome.'
         else:
             Categoria.objects.create(nome=nome)
-            cache.delete('categorias')  # invalida cache
+            cache.delete('categorias')
             return redirect('adm_categorias')
 
     return render(request, 'adm/categoria_form.html', {'erro': erro, 'acao': 'Criar'})
@@ -273,7 +258,7 @@ def adm_categoria_editar(request, id):
         else:
             categoria.nome = nome
             categoria.save()
-            cache.delete('categorias')  # invalida cache
+            cache.delete('categorias')
             return redirect('adm_categorias')
 
     return render(request, 'adm/categoria_form.html', {
@@ -289,7 +274,7 @@ def adm_categoria_deletar(request, id):
 
     if request.method == 'POST':
         categoria.delete()
-        cache.delete('categorias')  # invalida cache
+        cache.delete('categorias')
         return redirect('adm_categorias')
 
     return render(request, 'adm/categoria_confirmar_deletar.html', {'categoria': categoria})
@@ -333,7 +318,7 @@ def adm_produto_criar(request):
             for imagem in imagens:
                 ProdutoImagem.objects.create(produto=produto, imagem=imagem)
 
-            cache.delete('produtos_destaque')  # invalida cache
+            cache.delete('produtos_destaque')
             return redirect('adm_produtos')
 
     return render(request, 'adm/produto_form.html', {
@@ -386,7 +371,7 @@ def adm_produto_editar(request, id):
                     for imagem in imagens_novas:
                         ProdutoImagem.objects.create(produto=produto, imagem=imagem)
 
-                    cache.delete('produtos_destaque')  # invalida cache
+                    cache.delete('produtos_destaque')
                     return redirect('adm_produtos')
 
     return render(request, 'adm/produto_form.html', {
@@ -406,7 +391,7 @@ def adm_produto_deletar(request, id):
         for img in produto.imagens.all():
             img.delete()
         produto.delete()
-        cache.delete('produtos_destaque')  # invalida cache
+        cache.delete('produtos_destaque')
         return redirect('adm_produtos')
 
     return render(request, 'adm/produto_confirmar_deletar.html', {'produto': produto})
