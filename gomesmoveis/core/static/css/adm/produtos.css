@@ -4,7 +4,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 50px;
+    padding: 30px;
+    box-sizing: border-box;
+    overflow-x: hidden;
 }
 .container-categoria-adm h1{
     font-family: "Poppins", sans-serif;
@@ -90,31 +92,23 @@
 /* table */
 .table-container {
     width: 100%;
-    max-height: 70vh;   /* altura do scroll */
-    overflow-y: auto;    /* scroll vertical */
+    max-height: 70vh;
+    overflow-y: auto;
 }
-/* largura do scroll */
 .table-container::-webkit-scrollbar {
     width: 8px;
 }
-
-/* fundo */
 .table-container::-webkit-scrollbar-track {
     background: #f1f1f1;
     border-radius: 10px;
 }
-
-/* “barra” do scroll */
 .table-container::-webkit-scrollbar-thumb {
     background: #D32F2F;
     border-radius: 10px;
 }
-
-/* hover */
 .table-container::-webkit-scrollbar-thumb:hover {
     background: #a52828;
 }
-
 
 .lista-categorias-adm{
     width: 100%;
@@ -134,7 +128,6 @@
     font-weight: 700;
     color: #4A4A4A;
 }
-
 
 .tbody-categorias-adm{
     height: 500px;
@@ -208,25 +201,26 @@
     transition: transform 0.3s;
     text-decoration: none;
 }
+
 .form-container {
     display: flex;
-    gap: 40px;
+    gap: 20px;
     width: 100%;
-    max-width: 100%;          /* era 1200px — causava overflow */
-    flex-wrap: wrap;
+    max-width: 100%;
+    flex-wrap: nowrap;           /* evita quebra de linha no PC */
     align-items: flex-start;
     min-width: 0;
     box-sizing: border-box;
-    overflow: hidden;         /* impede vazamento horizontal */
+    overflow: hidden;
 }
 
 .form-container > form {
-    flex: 0 1 380px;
-    min-width: 0;             /* era 280px — forçava expansão */
-    max-width: 420px;
+    flex: 0 0 340px;             /* largura fixa, não cresce nem encolhe */
+    min-width: 0;
+    max-width: 340px;
     max-height: 600px;
     overflow-y: auto;
-    overflow-x: hidden;       /* impede o input file de vazar */
+    overflow-x: hidden;
     padding-right: 10px;
     box-sizing: border-box;
 }
@@ -241,8 +235,6 @@
     bottom: 0;
     background: #f5f5f5;
     border-radius: 20px;
-
-
 }
 
 .form-group {
@@ -260,10 +252,10 @@
 
 .input-form-produto {
     width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
     height: 50px;
     padding: 8px 16px;
-    box-sizing: border-box;   
-    max-width: 100%;          
     border: 1px solid rgba(255,255,255,0.2);
     border-radius: 8px;
     outline: none;
@@ -295,8 +287,6 @@
 .input-form-produto:hover {
     border: 1px solid white;
 }
-
-
 
 .input-form-produto::placeholder {
     color: rgba(255,255,255,0.7);
@@ -330,7 +320,6 @@
     margin-top: 30px;
 }
 
-
 .voltar-categoria-inline {
     text-decoration: none !important;
     text-align: center;
@@ -342,10 +331,9 @@
 }
 
 .produto-preview {
-    flex: 1 1 620px;
-    min-width: 320px;
-    width: auto;
-    max-width: 700px;
+    flex: 1 1 0;             /* ocupa só o espaço que sobra */
+    min-width: 0;
+    max-width: 100%;
     background: #f5f5f5;
     padding: 0;
     border-radius: 10px;
@@ -510,12 +498,25 @@
     cursor: pointer;
 }
 
+/* Mobile */
 @media (max-width: 768px) {
+    .container-categoria-adm {
+        padding: 20px;
+        overflow-x: hidden;
+        box-sizing: border-box;
+    }
     .form-container {
         flex-direction: column;
+        flex-wrap: wrap;
+    }
+    .form-container > form {
+        flex: 1 1 auto;
+        max-width: 100%;
+        max-height: none;
     }
     .produto-preview {
         order: -1;
+        max-height: none;
     }
     .produto-preview .container-produto-principal {
         flex-direction: column;
@@ -526,30 +527,12 @@
     .produto-preview .container-descricao-produto {
         width: 100%;
     }
-}
-
-.produto-imagem {
-    height: 40px;
-    width: 60px;
-    object-fit: cover;
-    border-radius: 8px;
-    display: block;
-    margin: 0 auto;
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-    .container-categoria-adm {
-        padding: 20px;
-        overflow-x: hidden;
-        box-sizing: border-box;
-    }
     .table-container {
         max-height: none;
         overflow-x: auto;
     }
     .lista-categorias-adm {
-        min-width: 600px; /* Para evitar compressão excessiva */
+        min-width: 600px;
     }
     .thead-categorias-adm tr {
         font-size: 18px;
@@ -561,6 +544,15 @@
         height: 30px;
         width: 45px;
     }
+}
+
+.produto-imagem {
+    height: 40px;
+    width: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto;
 }
 
 .img-produto img{
