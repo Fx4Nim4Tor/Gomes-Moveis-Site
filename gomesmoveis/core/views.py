@@ -143,6 +143,13 @@ def produtos(request):
         itens = paginator.get_page(page_number)
 
     if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        ids_pagina = [p.id for p in itens.object_list]
+        produtos_com_imagens = {
+            p.id: p for p in Produto.objects
+            .filter(id__in=ids_pagina)
+            .prefetch_related('imagens')
+        }
+        itens.object_list = [produtos_com_imagens[p.id] for p in itens.object_list if p.id in produtos_com_imagens]
         html = render_to_string('partials/cards_produtos.html', {'produtos': itens}, request=request)
         return JsonResponse({
             'html': html,
