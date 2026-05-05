@@ -212,19 +212,23 @@
     display: flex;
     gap: 40px;
     width: 100%;
-    max-width: 1200px;
+    max-width: 100%;          /* era 1200px — causava overflow */
     flex-wrap: wrap;
     align-items: flex-start;
     min-width: 0;
+    box-sizing: border-box;
+    overflow: hidden;         /* impede vazamento horizontal */
 }
 
 .form-container > form {
     flex: 0 1 380px;
-    min-width: 280px;
+    min-width: 0;             /* era 280px — forçava expansão */
     max-width: 420px;
     max-height: 600px;
     overflow-y: auto;
+    overflow-x: hidden;       /* impede o input file de vazar */
     padding-right: 10px;
+    box-sizing: border-box;
 }
 
 .form-actions-bottom {
@@ -258,6 +262,8 @@
     width: 100%;
     height: 50px;
     padding: 8px 16px;
+    box-sizing: border-box;   
+    max-width: 100%;          
     border: 1px solid rgba(255,255,255,0.2);
     border-radius: 8px;
     outline: none;
@@ -535,6 +541,8 @@
 @media (max-width: 768px) {
     .container-categoria-adm {
         padding: 20px;
+        overflow-x: hidden;
+        box-sizing: border-box;
     }
     .table-container {
         max-height: none;
