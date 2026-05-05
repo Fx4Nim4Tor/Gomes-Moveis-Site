@@ -3,7 +3,7 @@
     <div class="img-container">
         {% with imagem=p.imagens.all.0 %}
             {% if imagem %}
-                <img src="{{ imagem.imagem.url }}" loading="lazy">
+                <img src="{{ imagem.imagem.url }}">
             {% endif %}
         {% endwith %}
     </div>
