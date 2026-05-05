@@ -1,11 +1,7 @@
 {% for p in produtos %}
 <a href="{% url 'produto' p.slug %}">
     <div class="img-container">
-        {% with imagem=p.imagens.all.0 %}
-            {% if imagem %}
-                <img src="{{ imagem.imagem.url }}">
-            {% endif %}
-        {% endwith %}
+        <img src="{{ p.imagens.first.imagem.url }}" loading="lazy">
     </div>
     <div class="paragrafo-produto">
         <p>{{ p.nome }}</p>
