@@ -81,6 +81,15 @@ inputBusca.addEventListener('input', function () {
                             <span>${p.nome}</span>
                         `;
                         dropdown.appendChild(item);
+                        // Garante que a imagem apareça (opacity: 0 → .carregada)
+                        const img = item.querySelector('img');
+                        if (img) {
+                            if (img.complete) {
+                                img.classList.add('carregada');
+                            } else {
+                                img.addEventListener('load', () => img.classList.add('carregada'));
+                            }
+                        }
                     });
                 }
 
