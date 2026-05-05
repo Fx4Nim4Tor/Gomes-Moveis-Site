@@ -25,7 +25,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const listaProdutos = document.getElementById('lista-produtos');
     const containerBotao = document.getElementById('container-carregar-mais');
 
-    // Se não tiver o botão na página, para por aqui
     if (!containerBotao) return;
 
     const botao = document.getElementById('btn-carregar-mais');
@@ -33,7 +32,6 @@ document.addEventListener('DOMContentLoaded', function () {
     botao.addEventListener('click', function () {
         const proximaPagina = botao.dataset.proximaPagina;
 
-        // Pega os filtros ativos da URL atual para manter na requisição
         const params = new URLSearchParams(window.location.search);
         params.set('page', proximaPagina);
 
@@ -45,16 +43,27 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .then(res => res.json())
         .then(data => {
-            // Adiciona os novos cards no final da lista
             listaProdutos.insertAdjacentHTML('beforeend', data.html);
 
+            // Registra as novas imagens inseridas no observer de carregamento
+            listaProdutos.querySelectorAll('img:not(.carregada)').forEach(img => {
+                if (img.complete) {
+                    img.classList.add('carregada');
+                } else {
+                    img.addEventListener('load', () => img.classList.add('carregada'));
+                }
+            });
+
+            // Registra os novos cards no IntersectionObserver de animação
+            listaProdutos.querySelectorAll('.animar:not(.visivel)').forEach(el => {
+                observer.observe(el);
+            });
+
             if (data.tem_proxima) {
-                // Atualiza o botão para buscar a próxima página
                 botao.dataset.proximaPagina = data.proxima_pagina;
                 botao.textContent = 'Carregar mais';
                 botao.disabled = false;
             } else {
-                // Sem mais páginas, esconde o botão
                 containerBotao.remove();
             }
         })
@@ -65,8 +74,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-
-
-document.getElementsByClassName("feitopor")[0].addEventListener("click", function(){
+document.getElementsByClassName("feitopor")[0].addEventListener("click", function () {
     window.location.href = this.dataset.url;
 });
