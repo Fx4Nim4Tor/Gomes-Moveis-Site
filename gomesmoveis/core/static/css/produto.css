@@ -686,6 +686,7 @@
         flex: 0 0 calc((100% - 20px) / 3);
         height: 90px;
         border-radius: 15px;
+        object-fit: cover;
     }
 
     /* descricao */
