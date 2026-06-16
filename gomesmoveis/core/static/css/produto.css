@@ -75,15 +75,14 @@
     height: 200px;
     gap: 20px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    align-items: stretch;
 }
 .miniatura{
     flex: 0 0 calc((100% - 40px) / 3);
     height: 100%;
     border-radius: 30px;
     border: none;
-    display: flex;
-    justify-content: center;
     overflow: hidden;
     object-fit: cover;
     transition: transform 0.5s ease;
