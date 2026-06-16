@@ -78,14 +78,13 @@
     justify-content: center;
 }
 .miniatura{
-    width: 100%;
+    flex: 0 0 calc((100% - 40px) / 3);
     height: 100%;
     border-radius: 30px;
     border: none;
     display: flex;
     justify-content: center;
     overflow: hidden;
-    height: auto;
     object-fit: cover;
     transition: transform 0.5s ease;
 }
