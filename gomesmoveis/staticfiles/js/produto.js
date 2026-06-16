@@ -4,8 +4,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (principal && miniaturas.length) {
         miniaturas.forEach(img => {
+            img.style.cursor = 'pointer';
             img.addEventListener("click", function() {
                 principal.src = this.src;
+                miniaturas.forEach(i => i.classList.remove('miniatura--active'));
+                this.classList.add('miniatura--active');
             });
         });
     }
@@ -65,6 +68,9 @@ function copiarLink(){
 }
 
 
-document.getElementsByClassName("feitopor")[0].addEventListener("click", function(){
-    window.location.href = this.dataset.url;
-});
+const botaoFeitoPor = document.getElementsByClassName("feitopor")[0];
+if (botaoFeitoPor) {
+    botaoFeitoPor.addEventListener("click", function(){
+        window.location.href = this.dataset.url;
+    });
+}

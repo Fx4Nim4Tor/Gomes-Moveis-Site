@@ -97,6 +97,27 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-document.getElementsByClassName("feitopor")[0].addEventListener("click", function () {
-    window.location.href = this.dataset.url;
+document.addEventListener('DOMContentLoaded', function () {
+    const principal = document.getElementById('img-principal');
+    const miniaturas = document.querySelectorAll('.miniatura');
+
+    if (principal && miniaturas.length) {
+        miniaturas.forEach(function (thumb) {
+            thumb.style.cursor = 'pointer';
+            thumb.addEventListener('click', function () {
+                principal.src = this.src;
+                miniaturas.forEach(function (img) {
+                    img.classList.remove('miniatura--active');
+                });
+                this.classList.add('miniatura--active');
+            });
+        });
+    }
 });
+
+const botaoFeitoPor = document.getElementsByClassName('feitopor')[0];
+if (botaoFeitoPor) {
+    botaoFeitoPor.addEventListener('click', function () {
+        window.location.href = this.dataset.url;
+    });
+}
