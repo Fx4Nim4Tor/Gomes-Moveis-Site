@@ -29,9 +29,9 @@
                 <img id="img-principal" src="{{ produto.imagens.first.imagem.url }}" loading="lazy">
             </div>
             <div class="mini-img-produto">
-                <img class="miniatura" src="{{ produto.imagens.all.first.imagem.url }}" loading="lazy">
-                <img class="miniatura" src="{{ produto.imagens.all.1.imagem.url }}" loading="lazy">
-                <img class="miniatura" src="{{ produto.imagens.all.2.imagem.url }}" loading="lazy">
+                <img class="miniatura" src="{{ produto.imagens.all.first.imagem.url }}" loading="lazy" onclick="document.getElementById('img-principal').src = this.src;">
+                <img class="miniatura" src="{{ produto.imagens.all.1.imagem.url }}" loading="lazy" onclick="document.getElementById('img-principal').src = this.src;">
+                <img class="miniatura" src="{{ produto.imagens.all.2.imagem.url }}" loading="lazy" onclick="document.getElementById('img-principal').src = this.src;">
             </div>
         </div>
 

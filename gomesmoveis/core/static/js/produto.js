@@ -4,21 +4,23 @@ document.addEventListener('DOMContentLoaded', function () {
     const overlay = document.getElementById('filtro-overlay');
     const painel = document.getElementById('painel-filtro');
 
-    function abrirFiltro() {
-        painel.classList.add('aberto');
-        overlay.classList.add('aberto');
-        document.body.style.overflow = 'hidden';
-    }
+    if (btnAbrir && btnFechar && overlay && painel) {
+        function abrirFiltro() {
+            painel.classList.add('aberto');
+            overlay.classList.add('aberto');
+            document.body.style.overflow = 'hidden';
+        }
 
-    function fecharFiltro() {
-        painel.classList.remove('aberto');
-        overlay.classList.remove('aberto');
-        document.body.style.overflow = '';
-    }
+        function fecharFiltro() {
+            painel.classList.remove('aberto');
+            overlay.classList.remove('aberto');
+            document.body.style.overflow = '';
+        }
 
-    btnAbrir.addEventListener('click', abrirFiltro);
-    btnFechar.addEventListener('click', fecharFiltro);
-    overlay.addEventListener('click', fecharFiltro);
+        btnAbrir.addEventListener('click', abrirFiltro);
+        btnFechar.addEventListener('click', fecharFiltro);
+        overlay.addEventListener('click', fecharFiltro);
+    }
 });
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -99,18 +101,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
 document.addEventListener('DOMContentLoaded', function () {
     const principal = document.getElementById('img-principal');
-    const miniaturas = document.querySelectorAll('.miniatura');
+    const miniaturasContainer = document.querySelector('.mini-img-produto');
 
-    if (principal && miniaturas.length) {
-        miniaturas.forEach(function (thumb) {
-            thumb.style.cursor = 'pointer';
-            thumb.addEventListener('click', function () {
-                principal.src = this.src;
-                miniaturas.forEach(function (img) {
-                    img.classList.remove('miniatura--active');
-                });
-                this.classList.add('miniatura--active');
+    if (principal && miniaturasContainer) {
+        miniaturasContainer.addEventListener('click', function (event) {
+            const thumb = event.target.closest('.miniatura');
+            if (!thumb) return;
+
+            principal.src = thumb.src;
+            miniaturasContainer.querySelectorAll('.miniatura').forEach(function (img) {
+                img.classList.remove('miniatura--active');
             });
+            thumb.classList.add('miniatura--active');
         });
     }
 });

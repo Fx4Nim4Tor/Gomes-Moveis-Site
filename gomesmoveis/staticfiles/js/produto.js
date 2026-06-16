@@ -1,15 +1,17 @@
 document.addEventListener("DOMContentLoaded", function() {
     const principal = document.getElementById("img-principal");
-    const miniaturas = document.querySelectorAll(".miniatura");
+    const miniaturasContainer = document.querySelector('.mini-img-produto');
 
-    if (principal && miniaturas.length) {
-        miniaturas.forEach(img => {
-            img.style.cursor = 'pointer';
-            img.addEventListener("click", function() {
-                principal.src = this.src;
-                miniaturas.forEach(i => i.classList.remove('miniatura--active'));
-                this.classList.add('miniatura--active');
+    if (principal && miniaturasContainer) {
+        miniaturasContainer.addEventListener('click', function(event) {
+            const thumb = event.target.closest('.miniatura');
+            if (!thumb) return;
+
+            principal.src = thumb.src;
+            miniaturasContainer.querySelectorAll('.miniatura').forEach(function(img) {
+                img.classList.remove('miniatura--active');
             });
+            thumb.classList.add('miniatura--active');
         });
     }
 
