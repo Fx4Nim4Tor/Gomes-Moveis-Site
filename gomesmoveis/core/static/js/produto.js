@@ -117,6 +117,44 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+function fecharAlerta(){
+    const alerta = document.getElementById('alerta');
+    if (alerta) alerta.style.display = 'none';
+}
+
+function abrirAlerta(){
+    const alerta = document.getElementById('alerta');
+    if (alerta) alerta.style.display = 'flex';
+}
+
+function fecharAlertaComp(){
+    const alertaComp = document.getElementById('alertacomp');
+    if (alertaComp) alertaComp.style.display = 'none';
+}
+
+function abrirAlertaComp(){
+    const linkInput = document.getElementById('link-compartilhar');
+    const alertaComp = document.getElementById('alertacomp');
+    if (linkInput) linkInput.value = window.location.href;
+    if (alertaComp) alertaComp.style.display = 'flex';
+}
+
+function copiarLink(){
+    const input = document.getElementById('link-compartilhar');
+    if (!input) return;
+
+    navigator.clipboard.writeText(input.value).then(() => {
+        const btn = document.querySelector('.btn-copiar');
+        if (btn) {
+            btn.textContent = 'Copiado!';
+            setTimeout(() => btn.textContent = 'Copiar', 2000);
+        }
+    }).catch(() => {
+        input.select();
+        document.execCommand('copy');
+    });
+}
+
 const botaoFeitoPor = document.getElementsByClassName('feitopor')[0];
 if (botaoFeitoPor) {
     botaoFeitoPor.addEventListener('click', function () {
