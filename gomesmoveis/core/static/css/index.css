@@ -186,13 +186,13 @@
     background-image: url("/static/images/executiva.jpg");
 }
 .gamer{
-    background-image: url("/static/images/gamer.jpg");
+    background-image: url("/static/images/gamer.png");
 }
 .ergonomica{
-    background-image: url("/static/images/ergonomico.jpg");
+    background-image: url("/static/images/ergonomico.png");
 }
 .escritorio{
-    background-image: url("/static/images/escritorio.jpg");
+    background-image: url("/static/images/escritorio.jpeg");
 }
 .home-office{
     background-image: url("/static/images/home_office.jpeg");
