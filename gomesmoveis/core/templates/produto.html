@@ -29,9 +29,15 @@
                 <img id="img-principal" src="{{ produto.imagens.first.imagem.url }}" loading="lazy">
             </div>
             <div class="mini-img-produto">
-                <img class="miniatura" src="{{ produto.imagens.all.first.imagem.url }}" loading="lazy" onclick="document.getElementById('img-principal').src = this.src;">
+                {% if produto.imagens.all.0 %}
+                <img class="miniatura" src="{{ produto.imagens.all.0.imagem.url }}" loading="lazy" onclick="document.getElementById('img-principal').src = this.src;">
+                {% endif %}
+                {% if produto.imagens.all.1 %}
                 <img class="miniatura" src="{{ produto.imagens.all.1.imagem.url }}" loading="lazy" onclick="document.getElementById('img-principal').src = this.src;">
+                {% endif %}
+                {% if produto.imagens.all.2 %}
                 <img class="miniatura" src="{{ produto.imagens.all.2.imagem.url }}" loading="lazy" onclick="document.getElementById('img-principal').src = this.src;">
+                {% endif %}
             </div>
         </div>
 
@@ -75,7 +81,7 @@
 <!-- alerta quando clica no whats que no css ta como COMPRAR! kk-->
 <div id="alerta" class="alerta">
     <div class="alerta-conteudo">
-        <span class="fechar" onclick="">x</span>
+        <span class="fechar" onclick="fecharAlerta()">x</span>
 
         <h2>Onde você mora?</h2>
         <p class="descricao-alerta">selecione qual cidade você mora.</p>
