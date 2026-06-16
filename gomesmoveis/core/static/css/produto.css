@@ -678,14 +678,14 @@
     }
 
     .mini-img-produto {
-        height: auto;
+        height: 90px;
         gap: 10px;
     }
 
     .miniatura {
+        flex: 0 0 calc((100% - 20px) / 3);
+        height: 90px;
         border-radius: 15px;
-        max-height: 100px;
-        object-fit: cover;
     }
 
     /* descricao */
